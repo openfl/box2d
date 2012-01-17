@@ -1,0 +1,8 @@
+<project name="box2d" url="http://code.google.com/p/box2d-haxelib/" license="GPL">
+    <user name="elyon"/>
+    <tag v="physics"/>
+	<tag v="flash"/>
+    <tag v="cpp"/>
+    <description>Box2D is a tremendously popular physics engine for most platforms.</description>
+    <version name="1.09">Another small loop fix</version>
+</project>
