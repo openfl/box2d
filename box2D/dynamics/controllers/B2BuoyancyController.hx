@@ -87,7 +87,7 @@ class B2BuoyancyController extends B2Controller
 	
 		
 	public override function step(step:B2TimeStep):Void{
-		if(!m_bodyList)
+		if(m_bodyList == null)
 			return;
 		if(useWorldGravity){
 			gravity = getWorld().getGravity().copy();

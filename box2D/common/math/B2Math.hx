@@ -274,15 +274,20 @@ class B2Math {
 	static public var b2Transform_identity:B2Transform = new B2Transform(b2Vec2_zero, b2Mat22_identity);
 	
 	
-	#if !flash
-	
-    public static inline var MIN_VALUE:Float = 2.2250738585072014e-308;
-    public static inline var MAX_VALUE:Float = 1.7976931348623158e+308;
-	
-	#else
+	#if flash
 	
 	public static inline var MIN_VALUE:Float = untyped __global__ ["Number"].MIN_VALUE;
 	public static inline var MAX_VALUE:Float = untyped __global__ ["Number"].MAX_VALUE;
+	
+	#elseif js
+	
+	public static inline var MIN_VALUE:Float = untyped __js__ ("Number.MIN_VALUE");
+	public static inline var MAX_VALUE:Float = untyped __js__ ("Number.MAX_VALUE");
+	
+	#else
+	
+    public static inline var MIN_VALUE:Float = 2.2250738585072014e-308;
+    public static inline var MAX_VALUE:Float = 1.7976931348623158e+308;
 	
 	#end
 	
