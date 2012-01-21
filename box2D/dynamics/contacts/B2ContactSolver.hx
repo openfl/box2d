@@ -37,6 +37,8 @@ import box2D.dynamics.B2TimeStep;
 */
 class B2ContactSolver
 {
+	private static var staticFix = B2Settings.b2_maxManifoldPoints;
+	
 	public function new()
 	{
 		m_step = new B2TimeStep();
