@@ -4,5 +4,5 @@
 	<tag v="flash"/>
     <tag v="cpp"/>
     <description>Box2D is a tremendously popular physics engine for most platforms.</description>
-    <version name="1.11">Small platform fixes</version>
+    <version name="1.12">Performance improvement</version>
 </project>
