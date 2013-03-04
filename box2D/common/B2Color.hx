@@ -41,26 +41,26 @@ class B2Color
 		_b = Std.int(255 * B2Math.clamp(bb, 0.0, 1.0));
 	}
 	
-	public var r (null, setR):Float;
-	public var g (null, setG):Float;
-	public var b (null, setB):Float;
-	public var color (getColor, null):Int;
+	public var r (null, set):Float;
+	public var g (null, set):Float;
+	public var b (null, set):Float;
+	public var color (get, null):Int;
 	
 	// R
-	private function setR(rr:Float) : Float{
+	private function set_r(rr:Float) : Float{
 		return _r = Std.int(255 * B2Math.clamp(rr, 0.0, 1.0));
 	}
 	// G
-	private function setG(gg:Float) : Float{
+	private function set_g(gg:Float) : Float{
 		return _g = Std.int(255 * B2Math.clamp(gg, 0.0, 1.0));
 	}
 	// B
-	private function setB(bb:Float) : Float{
+	private function set_b(bb:Float) : Float{
 		return _b = Std.int(255 * B2Math.clamp(bb, 0.0, 1.0));
 	}
 	
 	// Color
-	private function getColor() : Int{
+	private function get_color() : Int{
 		return (_r << 16) | (_g << 8) | (_b);
 	}
 	

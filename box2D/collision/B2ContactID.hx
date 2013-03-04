@@ -38,12 +38,12 @@ class B2ContactID
 		return id;
 	}
 	
-	public var key (getKey, setKey):Int;
+	public var key (get, set):Int;
 	
-	private function getKey():Int {
+	private function get_key():Int {
 		return _key;
 	}
-	private function setKey(value:Int) : Int {
+	private function set_key(value:Int) : Int {
 		_key = value;
 		features._referenceEdge = _key & 0x000000ff;
 		features._incidentEdge = ((_key & 0x0000ff00) >> 8) & 0x000000ff;

@@ -1304,7 +1304,7 @@ class B2World
 					c.m_flags |= B2Contact.e_toiFlag;
 				}
 				
-				if (B2Math.MIN_VALUE < toi && toi < minTOI)
+				if (B2Math.MIN_VALUE() < toi && toi < minTOI)
 				{
 					// This is the minimum TOI found so far.
 					minContact = c;
@@ -1314,7 +1314,7 @@ class B2World
 				c = c.m_next;
 			}
 			
-			if (minContact == null || 1.0 - 100.0 * B2Math.MIN_VALUE < minTOI)
+			if (minContact == null || 1.0 - 100.0 * B2Math.MIN_VALUE() < minTOI)
 			{
 				// No more TOI events. Done!
 				break;

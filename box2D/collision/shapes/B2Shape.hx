@@ -135,7 +135,7 @@ class B2Shape
 		simplexCache.count = 0;
 		var output:B2DistanceOutput = new B2DistanceOutput();
 		B2Distance.distance(output, simplexCache, input);
-		return output.distance  < 10.0 * B2Math.MIN_VALUE;*/
+		return output.distance  < 10.0 * B2Math.MIN_VALUE();*/
 	}
 	
 	//--------------- Internals Below -------------------

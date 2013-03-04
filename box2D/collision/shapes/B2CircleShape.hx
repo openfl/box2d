@@ -102,7 +102,7 @@ class B2CircleShape extends B2Shape
 		var sigma:Float = c * c - rr * b;
 		
 		// Check for negative discriminant and short segment.
-		if (sigma < 0.0 || rr < B2Math.MIN_VALUE)
+		if (sigma < 0.0 || rr < B2Math.MIN_VALUE())
 		{
 			return false;
 		}
@@ -161,7 +161,7 @@ class B2CircleShape extends B2Shape
 		var p:B2Vec2 = B2Math.mulX(xf, m_p);
 		var l:Float = -(B2Math.dot(normal, p) - offset);
 		
-		if (l < -m_radius + B2Math.MIN_VALUE)
+		if (l < -m_radius + B2Math.MIN_VALUE())
 		{
 			//Completely dry
 			return 0;

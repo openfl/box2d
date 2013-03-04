@@ -117,7 +117,7 @@ class B2Vec2
 	public function normalize():Float
 	{
 		var length:Float = Math.sqrt(x * x + y * y);
-		if (length < B2Math.MIN_VALUE)
+		if (length < B2Math.MIN_VALUE())
 		{
 			return 0.0;
 		}

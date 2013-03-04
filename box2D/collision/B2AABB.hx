@@ -73,8 +73,8 @@ class B2AABB
 	 */
 	public function rayCast(output:B2RayCastOutput, input:B2RayCastInput):Bool
 	{
-		var tmin:Float = -B2Math.MAX_VALUE;
-		var tmax:Float = B2Math.MAX_VALUE;
+		var tmin:Float = -B2Math.MAX_VALUE();
+		var tmax:Float = B2Math.MAX_VALUE();
 		
 		var pX:Float = input.p1.x;
 		var pY:Float = input.p1.y;
@@ -93,7 +93,7 @@ class B2AABB
 		
 		//x
 		{
-			if (absDX < B2Math.MIN_VALUE)
+			if (absDX < B2Math.MIN_VALUE())
 			{
 				// Parallel.
 				if (pX < lowerBound.x || upperBound.x < pX)
@@ -133,7 +133,7 @@ class B2AABB
 		}
 		//y
 		{
-			if (absDY < B2Math.MIN_VALUE)
+			if (absDY < B2Math.MIN_VALUE())
 			{
 				// Parallel.
 				if (pY < lowerBound.y || upperBound.y < pY)

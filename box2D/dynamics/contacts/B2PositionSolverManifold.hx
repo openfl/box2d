@@ -70,7 +70,7 @@ class B2PositionSolverManifold
 				var dX:Float = pointBX - pointAX;
 				var dY:Float = pointBY - pointAY;
 				var d2:Float = dX * dX + dY * dY;
-				if (d2 > B2Math.MIN_VALUE*B2Math.MIN_VALUE)
+				if (d2 > B2Math.MIN_VALUE()*B2Math.MIN_VALUE())
 				{
 					var d:Float = Math.sqrt(d2);
 					m_normal.x = dX/d;

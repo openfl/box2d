@@ -72,7 +72,7 @@ class B2GravityController extends B2Controller
 					dx = p2.x - p1.x;
 					dy = p2.y - p1.y;
 					r2 = dx*dx+dy*dy;
-					if (r2 < B2Math.MIN_VALUE) {
+					if (r2 < B2Math.MIN_VALUE()) {
 						j = j.nextBody;
 						continue;
 					}
@@ -99,7 +99,7 @@ class B2GravityController extends B2Controller
 					dx = p2.x - p1.x;
 					dy = p2.y - p1.y;
 					r2 = dx*dx+dy*dy;
-					if(r2<B2Math.MIN_VALUE) {
+					if(r2<B2Math.MIN_VALUE()) {
 						i = i.nextBody;
 						continue;
 					}

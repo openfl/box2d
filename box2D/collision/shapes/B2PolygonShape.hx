@@ -111,7 +111,7 @@ class B2PolygonShape extends B2Shape
 			var i1:Int = i;
 			var i2:Int = i + 1 < m_vertexCount ? i + 1 : 0;
 			var edge:B2Vec2 = B2Math.subtractVV(m_vertices[i2], m_vertices[i1]);
-			B2Settings.b2Assert(edge.lengthSquared() > B2Math.MIN_VALUE /* * Number.MIN_VALUE*/);
+			B2Settings.b2Assert(edge.lengthSquared() > B2Math.MIN_VALUE() /* * Number.MIN_VALUE*/);
 			m_normals[i].setV(B2Math.crossVF(edge, 1.0));
 			m_normals[i].normalize();
 		}
@@ -327,7 +327,7 @@ class B2PolygonShape extends B2Shape
 				}
 			}
 			
-			if (upper < lower - B2Math.MIN_VALUE)
+			if (upper < lower - B2Math.MIN_VALUE())
 			{
 				return false;
 			}
@@ -528,7 +528,7 @@ class B2PolygonShape extends B2Shape
 		for (i in 0...m_vertexCount)
 		{
 			depths[i] = B2Math.dot(normalL, m_vertices[i]) - offsetL;
-			var isSubmerged:Bool = depths[i] < -B2Math.MIN_VALUE;
+			var isSubmerged:Bool = depths[i] < -B2Math.MIN_VALUE();
 			if (i > 0)
 			{
 				if (isSubmerged)
@@ -825,7 +825,7 @@ class B2PolygonShape extends B2Shape
 		}
 		p[count] = p[0];
 		
-		var minArea:Float = B2Math.MAX_VALUE;
+		var minArea:Float = B2Math.MAX_VALUE();
 		
 		for (i in 1...(count + 1))
 		{
@@ -842,11 +842,11 @@ class B2PolygonShape extends B2Shape
 			var uyX:Float = -uxY;
 			var uyY:Float = uxX;
 			//b2Vec2 lower(FLT_MAX, FLT_MAX);
-			var lowerX:Float = B2Math.MAX_VALUE;
-			var lowerY:Float = B2Math.MAX_VALUE;
+			var lowerX:Float = B2Math.MAX_VALUE();
+			var lowerY:Float = B2Math.MAX_VALUE();
 			//b2Vec2 upper(-FLT_MAX, -FLT_MAX);
-			var upperX:Float = -B2Math.MAX_VALUE;
-			var upperY:Float = -B2Math.MAX_VALUE;
+			var upperX:Float = -B2Math.MAX_VALUE();
+			var upperY:Float = -B2Math.MAX_VALUE();
 			
 			for (j in 0...count)
 			{

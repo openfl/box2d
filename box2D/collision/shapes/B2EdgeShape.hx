@@ -61,7 +61,7 @@ class B2EdgeShape extends B2Shape
 		var nX: Float = transform.position.y + (tMat.col1.y * m_v2.x + tMat.col2.y * m_v2.y) - v1Y;
 		var nY: Float = -(transform.position.x + (tMat.col1.x * m_v2.x + tMat.col2.x * m_v2.y) - v1X);
 		
-		var k_slop: Float = 100.0 * B2Math.MIN_VALUE;
+		var k_slop: Float = 100.0 * B2Math.MIN_VALUE();
 		var denom: Float = -(rX * nX + rY * nY);
 	
 		// Cull back facing collision and ignore parallel segments.

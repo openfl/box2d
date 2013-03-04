@@ -54,7 +54,7 @@ class B2TimeOfImpact
 		var sweepB:B2Sweep = input.sweepB;
 		
 		B2Settings.b2Assert(sweepA.t0 == sweepB.t0);
-		B2Settings.b2Assert(1.0 - sweepA.t0 > B2Math.MIN_VALUE);
+		B2Settings.b2Assert(1.0 - sweepA.t0 > B2Math.MIN_VALUE());
 		
 		var radius:Float = proxyA.m_radius + proxyB.m_radius;
 		var tolerance:Float = input.tolerance;
@@ -217,7 +217,7 @@ class B2TimeOfImpact
 			}
 			
 			// Ensure significant advancement
-			if (newAlpha < (1.0 + 100.0 * B2Math.MIN_VALUE) * alpha)
+			if (newAlpha < (1.0 + 100.0 * B2Math.MIN_VALUE()) * alpha)
 			{
 				break;
 			}

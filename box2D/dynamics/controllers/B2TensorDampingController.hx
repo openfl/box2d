@@ -75,7 +75,7 @@ class B2TensorDampingController extends B2Controller
 	
 	public override function step(step:B2TimeStep):Void{
 		var timestep:Float = step.dt;
-		if(timestep<=B2Math.MIN_VALUE)
+		if(timestep<=B2Math.MIN_VALUE())
 			return;
 		if(timestep>maxTimestep && maxTimestep>0)
 			timestep = maxTimestep;
