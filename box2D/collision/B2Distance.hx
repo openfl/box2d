@@ -121,7 +121,7 @@ public static function distance(output:B2DistanceOutput, cache:B2SimplexCache, i
 		var d:B2Vec2 = simplex.getSearchDirection();
 		
 		// Ensure the search direction is numerically fit.
-		if (d.lengthSquared() < B2Math.MIN_VALUE * B2Math.MIN_VALUE)
+		if (d.lengthSquared() < B2Math.MIN_VALUE() * B2Math.MIN_VALUE())
 		{
 			// THe origin is probably contained by a line segment or triangle.
 			// Thus the shapes are overlapped.
@@ -181,7 +181,7 @@ public static function distance(output:B2DistanceOutput, cache:B2SimplexCache, i
 		var rA:Float = proxyA.m_radius;
 		var rB:Float = proxyB.m_radius;
 		
-		if (output.distance > rA + rB && output.distance > B2Math.MIN_VALUE)
+		if (output.distance > rA + rB && output.distance > B2Math.MIN_VALUE())
 		{
 			// Shapes are still not overlapped.
 			// Move the witness points to the outer surface.

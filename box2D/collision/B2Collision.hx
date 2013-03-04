@@ -116,7 +116,7 @@ class B2Collision{
 		
 		// Find support vertex on poly2 for -normal.
 		var index:Int = 0;
-		var minDot:Float = B2Math.MAX_VALUE;
+		var minDot:Float = B2Math.MAX_VALUE();
 		for (i in 0...count2)
 		{
 			//float32 dot = b2Dot(poly2->m_vertices[i], normal1);
@@ -180,7 +180,7 @@ class B2Collision{
 		
 		// Get support vertex as a hint for our search
 		var edge:Int = 0;
-		var maxDot:Float = -B2Math.MAX_VALUE;
+		var maxDot:Float = -B2Math.MAX_VALUE();
 		for (i in 0...count1)
 		{
 			//var dot:Float = b2Math.b2Dot(normals1[i], dLocal1);
@@ -285,7 +285,7 @@ class B2Collision{
 		
 		// Find the incident edge on poly2.
 		var index:Int = 0;
-		var minDot:Float = B2Math.MAX_VALUE;
+		var minDot:Float = B2Math.MAX_VALUE();
 		for (i in 0...count2)
 		{
 			//var dot:Float = b2Dot(normal1, normals2[i]);
@@ -579,7 +579,7 @@ class B2Collision{
 		
 		// Find the min separating edge.
 		var normalIndex:Int = 0;
-		var separation:Float = -B2Math.MAX_VALUE;
+		var separation:Float = -B2Math.MAX_VALUE();
 		var radius:Float = polygon.m_radius + circle.m_radius;
 		var vertexCount:Int = polygon.m_vertexCount;
 		var vertices:Array <B2Vec2> = polygon.m_vertices;
@@ -613,7 +613,7 @@ class B2Collision{
 		var v2:B2Vec2 = vertices[vertIndex2];
 		
 		// If the center is inside the polygon ...
-		if (separation < B2Math.MIN_VALUE)
+		if (separation < B2Math.MIN_VALUE())
 		{
 			manifold.m_pointCount = 1;
 			manifold.m_type = B2Manifold.e_faceA;

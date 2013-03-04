@@ -296,7 +296,7 @@ class B2Island
 		
 		if (allowSleep){
 			
-			var minSleepTime:Float = B2Math.MAX_VALUE;
+			var minSleepTime:Float = B2Math.MAX_VALUE();
 			
 			var linTolSqr:Float = B2Settings.b2_linearSleepTolerance * B2Settings.b2_linearSleepTolerance;
 			var angTolSqr:Float = B2Settings.b2_angularSleepTolerance * B2Settings.b2_angularSleepTolerance;

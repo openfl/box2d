@@ -276,18 +276,18 @@ class B2Math {
 	
 	#if flash
 	
-	public static inline var MIN_VALUE:Float = untyped __global__ ["Number"].MIN_VALUE;
-	public static inline var MAX_VALUE:Float = untyped __global__ ["Number"].MAX_VALUE;
+	public static inline function MIN_VALUE():Float { return untyped __global__ ["Number"].MIN_VALUE; }
+	public static inline function MAX_VALUE():Float { return untyped __global__ ["Number"].MAX_VALUE; }
 	
 	#elseif js
 	
-	public static inline var MIN_VALUE:Float = untyped __js__ ("Number.MIN_VALUE");
-	public static inline var MAX_VALUE:Float = untyped __js__ ("Number.MAX_VALUE");
+	public static inline function MIN_VALUE():Float { return untyped __js__ ("Number.MIN_VALUE"); }
+	public static inline function MAX_VALUE():Float { return untyped __js__ ("Number.MAX_VALUE"); }
 	
 	#else
 	
-    public static inline var MIN_VALUE:Float = 2.2250738585072014e-308;
-    public static inline var MAX_VALUE:Float = 1.7976931348623158e+308;
+	public static inline function MIN_VALUE():Float { return 2.2250738585072014e-308; }
+	public static inline function MAX_VALUE():Float { return 1.7976931348623158e+308; }
 	
 	#end
 	

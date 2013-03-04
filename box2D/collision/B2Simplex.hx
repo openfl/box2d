@@ -72,7 +72,7 @@ public function readCache(cache:B2SimplexCache,
 	{
 		var metric1:Float = cache.metric;
 		var metric2:Float = getMetric();
-		if (metric2 < .5 * metric1 || 2.0 * metric1 < metric2 || metric2 < B2Math.MIN_VALUE)
+		if (metric2 < .5 * metric1 || 2.0 * metric1 < metric2 || metric2 < B2Math.MIN_VALUE())
 		{
 			// Reset the simplex
 			m_count = 0;

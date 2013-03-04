@@ -81,7 +81,7 @@ class B2Sweep
 	* @param t the new initial time.
 	*/
 	public function advance(t:Float) : Void{
-		if (t0 < t && 1.0 - t0 > B2Math.MIN_VALUE)
+		if (t0 < t && 1.0 - t0 > B2Math.MIN_VALUE())
 		{
 			var alpha:Float = (t - t0) / (1.0 - t0);
 			//c0 = (1.0f - alpha) * c0 + alpha * c;

@@ -124,7 +124,7 @@ class B2BuoyancyController extends B2Controller
 			areac.y/=area;
 			massc.x/=mass;
 			massc.y/=mass;
-			if(area<B2Math.MIN_VALUE)
+			if(area<B2Math.MIN_VALUE())
 				continue;
 			//Buoyancy
 			var buoyancyForce:B2Vec2 = gravity.getNegative();

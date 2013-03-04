@@ -34,12 +34,12 @@ class Features
 	* The edge that defines the outward contact normal.
 	*/
 	
-	public var referenceEdge (getReferenceEdge, setReferenceEdge):Int;
+	public var referenceEdge (get, set):Int;
 	
-	private function getReferenceEdge():Int{
+	private function get_referenceEdge():Int{
 		return _referenceEdge;
 	}
-	private function setReferenceEdge(value:Int) : Int{
+	private function set_referenceEdge(value:Int) : Int{
 		_referenceEdge = value;
 		_m_id._key = (_m_id._key & 0xffffff00) | (_referenceEdge & 0x000000ff);
 		return value;
@@ -49,12 +49,12 @@ class Features
 	/**
 	* The edge most anti-parallel to the reference edge.
 	*/
-	public var incidentEdge (getIncidentEdge, setIncidentEdge):Int;
+	public var incidentEdge (get, set):Int;
 	
-	private function getIncidentEdge():Int{
+	private function get_incidentEdge():Int{
 		return _incidentEdge;
 	}
-	private function setIncidentEdge(value:Int) : Int{
+	private function set_incidentEdge(value:Int) : Int{
 		_incidentEdge = value;
 		_m_id._key = (_m_id._key & 0xffff00ff) | ((_incidentEdge << 8) & 0x0000ff00);
 		return value;
@@ -64,12 +64,12 @@ class Features
 	/**
 	* The vertex (0 or 1) on the incident edge that was clipped.
 	*/
-	public var incidentVertex (getIncidentVertex, setIncidentVertex):Int;
+	public var incidentVertex (get, set):Int;
 	
-	private function getIncidentVertex():Int{
+	private function get_incidentVertex():Int{
 		return _incidentVertex;
 	}
-	private function setIncidentVertex(value:Int) : Int{
+	private function set_incidentVertex(value:Int) : Int{
 		_incidentVertex = value;
 		_m_id._key = (_m_id._key & 0xff00ffff) | ((_incidentVertex << 16) & 0x00ff0000);
 		return value;
@@ -79,12 +79,12 @@ class Features
 	/**
 	* A value of 1 indicates that the reference edge is on shape2.
 	*/
-	public var flip (getFlip, setFlip):Int;
+	public var flip (get, set):Int;
 	
-	private function getFlip():Int{
+	private function get_flip():Int{
 		return _flip;
 	}
-	private function setFlip(value:Int) : Int{
+	private function set_flip(value:Int) : Int{
 		_flip = value;
 		_m_id._key = (_m_id._key & 0x00ffffff) | ((_flip << 24) & 0xff000000);
 		return value;
