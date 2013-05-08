@@ -34,7 +34,7 @@ class B2MouseJointDef extends B2JointDef
 		super ();
 		target = new B2Vec2 ();
 		
-		type = B2Joint.e_mouseJoint;
+		type = B2JointType.MOUSE_JOINT;
 		maxForce = 0.0;
 		frequencyHz = 5.0;
 		dampingRatio = 0.7;

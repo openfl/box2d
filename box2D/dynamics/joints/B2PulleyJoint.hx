@@ -238,32 +238,32 @@ class B2PulleyJoint extends B2Joint
 		var C:Float = m_constant - length1 - m_ratio * length2;
 		if (C > 0.0)
 		{
-			m_state = B2Joint.e_inactiveLimit;
+			m_state = B2LimitState.INACTIVE_LIMIT;
 			m_impulse = 0.0;
 		}
 		else
 		{
-			m_state = B2Joint.e_atUpperLimit;
+			m_state = B2LimitState.AT_UPPER_LIMIT;
 		}
 		
 		if (length1 < m_maxLength1)
 		{
-			m_limitState1 = B2Joint.e_inactiveLimit;
+			m_limitState1 = B2LimitState.INACTIVE_LIMIT;
 			m_limitImpulse1 = 0.0;
 		}
 		else
 		{
-			m_limitState1 = B2Joint.e_atUpperLimit;
+			m_limitState1 = B2LimitState.AT_UPPER_LIMIT;
 		}
 		
 		if (length2 < m_maxLength2)
 		{
-			m_limitState2 = B2Joint.e_inactiveLimit;
+			m_limitState2 = B2LimitState.INACTIVE_LIMIT;
 			m_limitImpulse2 = 0.0;
 		}
 		else
 		{
-			m_limitState2 = B2Joint.e_atUpperLimit;
+			m_limitState2 = B2LimitState.AT_UPPER_LIMIT;
 		}
 		
 		// Compute effective mass.
@@ -352,7 +352,7 @@ class B2PulleyJoint extends B2Joint
 		var impulse:Float;
 		var oldImpulse:Float;
 		
-		if (m_state == B2Joint.e_atUpperLimit)
+		if (m_state == B2LimitState.AT_UPPER_LIMIT)
 		{
 			//b2Vec2 v1 = bA->m_linearVelocity + b2Cross(bA->m_angularVelocity, r1);
 			v1X = bA.m_linearVelocity.x + (-bA.m_angularVelocity * r1Y);
@@ -386,7 +386,7 @@ class B2PulleyJoint extends B2Joint
 			bB.m_angularVelocity += bB.m_invI * (r2X * P2Y - r2Y * P2X);
 		}
 		
-		if (m_limitState1 == B2Joint.e_atUpperLimit)
+		if (m_limitState1 == B2LimitState.AT_UPPER_LIMIT)
 		{
 			//b2Vec2 v1 = bA->m_linearVelocity + b2Cross(bA->m_angularVelocity, r1);
 			v1X = bA.m_linearVelocity.x + (-bA.m_angularVelocity * r1Y);
@@ -409,7 +409,7 @@ class B2PulleyJoint extends B2Joint
 			bA.m_angularVelocity += bA.m_invI * (r1X * P1Y - r1Y * P1X);
 		}
 		
-		if (m_limitState2 == B2Joint.e_atUpperLimit)
+		if (m_limitState2 == B2LimitState.AT_UPPER_LIMIT)
 		{
 			//b2Vec2 v2 = bB->m_linearVelocity + b2Cross(bB->m_angularVelocity, r2);
 			v2X = bB.m_linearVelocity.x + (-bB.m_angularVelocity * r2Y);
@@ -469,7 +469,7 @@ class B2PulleyJoint extends B2Joint
 		
 		var linearError:Float = 0.0;
 		
-		if (m_state == B2Joint.e_atUpperLimit)
+		if (m_state == B2LimitState.AT_UPPER_LIMIT)
 		{
 			//b2Vec2 r1 = b2Mul(bA->m_xf.R, m_localAnchor1 - bA->GetLocalCenter());
 			tMat = bA.m_xf.R;
@@ -543,7 +543,7 @@ class B2PulleyJoint extends B2Joint
 			bB.synchronizeTransform();
 		}
 		
-		if (m_limitState1 == B2Joint.e_atUpperLimit)
+		if (m_limitState1 == B2LimitState.AT_UPPER_LIMIT)
 		{
 			//b2Vec2 r1 = b2Mul(bA->m_xf.R, m_localAnchor1 - bA->GetLocalCenter());
 			tMat = bA.m_xf.R;
@@ -589,7 +589,7 @@ class B2PulleyJoint extends B2Joint
 			bA.synchronizeTransform();
 		}
 		
-		if (m_limitState2 == B2Joint.e_atUpperLimit)
+		if (m_limitState2 == B2LimitState.AT_UPPER_LIMIT)
 		{
 			//b2Vec2 r2 = b2Mul(bB->m_xf.R, m_localAnchor2 - bB->GetLocalCenter());
 			tMat = bB.m_xf.R;
@@ -666,9 +666,9 @@ class B2PulleyJoint extends B2Joint
 	private var m_limitImpulse1:Float;
 	private var m_limitImpulse2:Float;
 
-	private var m_state:Int;
-	private var m_limitState1:Int;
-	private var m_limitState2:Int;
+	private var m_state:B2LimitState;
+	private var m_limitState1:B2LimitState;
+	private var m_limitState2:B2LimitState;
 	
 	// static
 	static public var b2_minPulleyLength:Float = 2.0;

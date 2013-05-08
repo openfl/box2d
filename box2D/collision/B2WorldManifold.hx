@@ -68,7 +68,7 @@ class B2WorldManifold
 		
 		switch(manifold.m_type)
 		{
-			case B2Manifold.e_circles:
+			case CIRCLES:
 			{
 				//var pointA:B2Vec2 = b2Math.b2MulX(xfA, manifold.m_localPoint);
 				tMat = xfA.R;
@@ -104,7 +104,7 @@ class B2WorldManifold
 				m_points[0].y = 0.5 * (cAY + cBY);
 			}
 			
-			case B2Manifold.e_faceA:
+			case FACE_A:
 			{
 				//normal = b2Math.b2MulMV(xfA.R, manifold.m_localPlaneNormal);
 				tMat = xfA.R;
@@ -138,7 +138,7 @@ class B2WorldManifold
 				}
 			}
 			
-			case B2Manifold.e_faceB:
+			case FACE_B:
 			{
 				//normal = b2Math.b2MulMV(xfB.R, manifold.m_localPlaneNormal);
 				tMat = xfB.R;

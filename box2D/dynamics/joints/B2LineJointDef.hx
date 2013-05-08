@@ -41,7 +41,7 @@ class B2LineJointDef extends B2JointDef
 		localAnchorB = new B2Vec2();
 		localAxisA = new B2Vec2();
 		
-		type = B2Joint.e_lineJoint;
+		type = B2JointType.LINE_JOINT;
 		//localAnchor1.SetZero();
 		//localAnchor2.SetZero();
 		localAxisA.set(1.0, 0.0);

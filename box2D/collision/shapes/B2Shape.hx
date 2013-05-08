@@ -67,7 +67,7 @@ class B2Shape
 	* Get the type of this shape. You can use this to down cast to the concrete shape.
 	* @return the shape type.
 	*/
-	public function getType() : Int
+	public function getType() : B2ShapeType
 	{
 		return m_type;
 	}
@@ -144,13 +144,13 @@ class B2Shape
 	 */
 	public function new ()
 	{
-		m_type = e_unknownShape;
+		m_type = B2ShapeType.UNKNOWN_SHAPE;
 		m_radius = B2Settings.b2_linearSlop;
 	}
 	
 	//virtual ~b2Shape();
 	
-	public var m_type:Int;
+	public var m_type:B2ShapeType;
 	public var m_radius:Float;
 	
 	/**
@@ -158,11 +158,11 @@ class B2Shape
 	*/
 	//enum b2ShapeType
 	//{
-		static public var e_unknownShape:Int = 	-1;
-		static public var e_circleShape:Int = 	0;
-		static public var e_polygonShape:Int = 	1;
-		static public var e_edgeShape:Int =       2;
-		static public var e_shapeTypeCount:Int = 	3;
+		//static public var e_unknownShape:Int = 	-1;
+		//static public var e_circleShape:Int = 	0;
+		//static public var e_polygonShape:Int = 	1;
+		//static public var e_edgeShape:Int =       2;
+		//static public var e_shapeTypeCount:Int = 	3;
 	//};
 	
 	/**

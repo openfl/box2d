@@ -78,7 +78,7 @@ class B2Body
 		//       return more than one shape to add to parent body... maybe it should add
 		//       shapes directly to the body instead of returning them?)
 		/*
-		if (def.type == b2Shape.e_edgeShape) {
+		if (def.type == B2ShapeType.EDGE_SHAPE) {
 			var edgeDef: B2EdgeChainDef = def as b2EdgeChainDef;
 			var v1: B2Vec2;
 			var v2: B2Vec2;

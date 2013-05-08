@@ -31,7 +31,7 @@ class B2JointDef
 	
 	public function new ()
 	{
-		type = B2Joint.e_unknownJoint;
+		type = B2JointType.UNKNOWN_JOINT;
 		userData = null;
 		bodyA = null;
 		bodyB = null;
@@ -41,7 +41,7 @@ class B2JointDef
 	/**
 	* The joint type is set automatically for concrete joint types.
 	*/
-	public var type:Int;
+	public var type:B2JointType;
 	/**
 	* Use this to attach application specific data to your joints.
 	*/

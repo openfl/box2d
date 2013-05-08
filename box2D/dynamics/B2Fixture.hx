@@ -25,6 +25,7 @@ import box2D.collision.B2RayCastOutput;
 import box2D.collision.IBroadPhase;
 import box2D.collision.shapes.B2MassData;
 import box2D.collision.shapes.B2Shape;
+import box2D.collision.shapes.B2ShapeType;
 import box2D.common.math.B2Math;
 import box2D.common.math.B2Transform;
 import box2D.common.math.B2Vec2;
@@ -45,7 +46,7 @@ class B2Fixture
 	 * Get the type of the child shape. You can use this to down cast to the concrete shape.
 	 * @return the shape type.
 	 */
-	public function getType():Int
+	public function getType():B2ShapeType
 	{
 		return m_shape.getType();
 	}

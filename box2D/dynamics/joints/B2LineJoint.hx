@@ -331,7 +331,7 @@ class B2LineJoint extends B2Joint
 		m_motorSpeed = def.motorSpeed;
 		m_enableLimit = def.enableLimit;
 		m_enableMotor = def.enableMotor;
-		m_limitState = B2Joint.e_inactiveLimit;
+		m_limitState = B2LimitState.INACTIVE_LIMIT;
 		
 		m_axis.setZero();
 		m_perp.setZero();
@@ -413,33 +413,33 @@ class B2LineJoint extends B2Joint
 			var jointTransition:Float = m_axis.x * dX + m_axis.y * dY;
 			if (B2Math.abs(m_upperTranslation - m_lowerTranslation) < 2.0 * B2Settings.b2_linearSlop)
 			{
-				m_limitState = B2Joint.e_equalLimits;
+				m_limitState = B2LimitState.EQUAL_LIMITS;
 			}
 			else if (jointTransition <= m_lowerTranslation)
 			{
-				if (m_limitState != B2Joint.e_atLowerLimit)
+				if (m_limitState != B2LimitState.AT_LOWER_LIMIT)
 				{
-					m_limitState = B2Joint.e_atLowerLimit;
+					m_limitState = B2LimitState.AT_LOWER_LIMIT;
 					m_impulse.y = 0.0;
 				}
 			}
 			else if (jointTransition >= m_upperTranslation)
 			{
-				if (m_limitState != B2Joint.e_atUpperLimit)
+				if (m_limitState != B2LimitState.AT_UPPER_LIMIT)
 				{
-					m_limitState = B2Joint.e_atUpperLimit;
+					m_limitState = B2LimitState.AT_UPPER_LIMIT;
 					m_impulse.y = 0.0;
 				}
 			}
 			else
 			{
-				m_limitState = B2Joint.e_inactiveLimit;
+				m_limitState = B2LimitState.INACTIVE_LIMIT;
 				m_impulse.y = 0.0;
 			}
 		}
 		else
 		{
-			m_limitState = B2Joint.e_inactiveLimit;
+			m_limitState = B2LimitState.INACTIVE_LIMIT;
 		}
 		
 		if (m_enableMotor == false)
@@ -494,7 +494,7 @@ class B2LineJoint extends B2Joint
 		var L2:Float;
 		
 		// Solve linear motor constraint
-		if (m_enableMotor && m_limitState != B2Joint.e_equalLimits)
+		if (m_enableMotor && m_limitState != B2LimitState.EQUAL_LIMITS)
 		{
 			//float32 Cdot = b2Dot(m_axis, v2 - v1) + m_a2 * w2 - m_a1 * w1; 
 			var Cdot:Float = m_axis.x * (v2.x -v1.x) + m_axis.y * (v2.y - v1.y) + m_a2 * w2 - m_a1 * w1;
@@ -521,7 +521,7 @@ class B2LineJoint extends B2Joint
 		//Cdot1 = b2Dot(m_perp, v2 - v1) + m_s2 * w2 - m_s1 * w1; 
 		var Cdot1:Float = m_perp.x * (v2.x - v1.x) + m_perp.y * (v2.y - v1.y) + m_s2 * w2 - m_s1 * w1; 
 		
-		if (m_enableLimit && m_limitState != B2Joint.e_inactiveLimit)
+		if (m_enableLimit && m_limitState != B2LimitState.INACTIVE_LIMIT)
 		{
 			// Solve prismatic and limit constraint in block form
 			//Cdot2 = b2Dot(m_axis, v2 - v1) + m_a2 * w2 - m_a1 * w1; 
@@ -532,11 +532,11 @@ class B2LineJoint extends B2Joint
 			
 			m_impulse.add(df);
 			
-			if (m_limitState == B2Joint.e_atLowerLimit)
+			if (m_limitState == B2LimitState.AT_LOWER_LIMIT)
 			{
 				m_impulse.y = B2Math.max(m_impulse.y, 0.0);
 			}
-			else if (m_limitState == B2Joint.e_atUpperLimit)
+			else if (m_limitState == B2LimitState.AT_UPPER_LIMIT)
 			{
 				m_impulse.y = B2Math.min(m_impulse.y, 0.0);
 			}
@@ -782,5 +782,5 @@ class B2LineJoint extends B2Joint
 	
 	private var m_enableLimit:Bool;
 	private var m_enableMotor:Bool;
-	private var m_limitState:Int;
+	private var m_limitState:B2LimitState;
 }

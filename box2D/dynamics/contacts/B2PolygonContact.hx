@@ -41,8 +41,8 @@ class B2PolygonContact extends B2Contact
 
 	public override function reset(fixtureA:B2Fixture = null, fixtureB:B2Fixture = null): Void{
 		super.reset(fixtureA, fixtureB);
-		//b2Settings.b2Assert(m_shape1.m_type == b2Shape.e_polygonShape);
-		//b2Settings.b2Assert(m_shape2.m_type == b2Shape.e_polygonShape);
+		//b2Settings.b2Assert(m_shape1.m_type == B2ShapeType.POLYGON_SHAPE);
+		//b2Settings.b2Assert(m_shape2.m_type == B2ShapeType.POLYGON_SHAPE);
 	}
 	//~b2PolyContact() {}
 

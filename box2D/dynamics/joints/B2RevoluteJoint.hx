@@ -208,7 +208,7 @@ class B2RevoluteJoint extends B2Joint
 		m_motorSpeed = def.motorSpeed;
 		m_enableLimit = def.enableLimit;
 		m_enableMotor = def.enableMotor;
-		m_limitState = B2Joint.e_inactiveLimit;
+		m_limitState = B2LimitState.INACTIVE_LIMIT;
 	}
 
 	// internal vars
@@ -286,33 +286,33 @@ class B2RevoluteJoint extends B2Joint
 			var jointAngle:Float = bB.m_sweep.a - bA.m_sweep.a - m_referenceAngle;
 			if (B2Math.abs(m_upperAngle - m_lowerAngle) < 2.0 * B2Settings.b2_angularSlop)
 			{
-				m_limitState = B2Joint.e_equalLimits;
+				m_limitState = B2LimitState.EQUAL_LIMITS;
 			}
 			else if (jointAngle <= m_lowerAngle)
 			{
-				if (m_limitState != B2Joint.e_atLowerLimit)
+				if (m_limitState != B2LimitState.AT_LOWER_LIMIT)
 				{
 					m_impulse.z = 0.0;
 				}
-				m_limitState = B2Joint.e_atLowerLimit;
+				m_limitState = B2LimitState.AT_LOWER_LIMIT;
 			}
 			else if (jointAngle >= m_upperAngle)
 			{
-				if (m_limitState != B2Joint.e_atUpperLimit)
+				if (m_limitState != B2LimitState.AT_UPPER_LIMIT)
 				{
 					m_impulse.z = 0.0;
 				}
-				m_limitState = B2Joint.e_atUpperLimit;
+				m_limitState = B2LimitState.AT_UPPER_LIMIT;
 			}
 			else
 			{
-				m_limitState = B2Joint.e_inactiveLimit;
+				m_limitState = B2LimitState.INACTIVE_LIMIT;
 				m_impulse.z = 0.0;
 			}
 		}
 		else
 		{
-			m_limitState = B2Joint.e_inactiveLimit;
+			m_limitState = B2LimitState.INACTIVE_LIMIT;
 		}
 		
 		// Warm starting.
@@ -372,7 +372,7 @@ class B2RevoluteJoint extends B2Joint
 		var i2:Float = bB.m_invI;
 		
 		// Solve motor constraint.
-		if (m_enableMotor && m_limitState != B2Joint.e_equalLimits)
+		if (m_enableMotor && m_limitState != B2LimitState.EQUAL_LIMITS)
 		{
 			var Cdot:Float = w2 - w1 - m_motorSpeed;
 			var impulse:Float = m_motorMass * ( -Cdot);
@@ -387,7 +387,7 @@ class B2RevoluteJoint extends B2Joint
 		}
 		
 		// Solve limit constraint.
-		if (m_enableLimit && m_limitState != B2Joint.e_inactiveLimit)
+		if (m_enableLimit && m_limitState != B2LimitState.INACTIVE_LIMIT)
 		{
 			//b2Vec2 r1 = b2Mul(bA->m_xf.R, m_localAnchor1 - bA->GetLocalCenter());
 			tMat = bA.m_xf.R;
@@ -412,11 +412,11 @@ class B2RevoluteJoint extends B2Joint
 			
 			m_mass.solve33(impulse3, -Cdot1X, -Cdot1Y, -Cdot2);
 			
-			if (m_limitState == B2Joint.e_equalLimits)
+			if (m_limitState == B2LimitState.EQUAL_LIMITS)
 			{
 				m_impulse.add(impulse3);
 			}
-			else if (m_limitState == B2Joint.e_atLowerLimit)
+			else if (m_limitState == B2LimitState.AT_LOWER_LIMIT)
 			{
 				newImpulse = m_impulse.z + impulse3.z;
 				if (newImpulse < 0.0)
@@ -430,7 +430,7 @@ class B2RevoluteJoint extends B2Joint
 					m_impulse.z = 0.0;
 				}
 			}
-			else if (m_limitState == B2Joint.e_atUpperLimit)
+			else if (m_limitState == B2LimitState.AT_UPPER_LIMIT)
 			{
 				newImpulse = m_impulse.z + impulse3.z;
 				if (newImpulse > 0.0)
@@ -518,19 +518,19 @@ class B2RevoluteJoint extends B2Joint
 		var impulseY:Float;
 		
 		// Solve angular limit constraint.
-		if (m_enableLimit && m_limitState != B2Joint.e_inactiveLimit)
+		if (m_enableLimit && m_limitState != B2LimitState.INACTIVE_LIMIT)
 		{
 			var angle:Float = bB.m_sweep.a - bA.m_sweep.a - m_referenceAngle;
 			var limitImpulse:Float = 0.0;
 			
-			if (m_limitState == B2Joint.e_equalLimits)
+			if (m_limitState == B2LimitState.EQUAL_LIMITS)
 			{
 				// Prevent large angular corrections
 				C = B2Math.clamp(angle - m_lowerAngle, -B2Settings.b2_maxAngularCorrection, B2Settings.b2_maxAngularCorrection);
 				limitImpulse = -m_motorMass * C;
 				angularError = B2Math.abs(C);
 			}
-			else if (m_limitState == B2Joint.e_atLowerLimit)
+			else if (m_limitState == B2LimitState.AT_LOWER_LIMIT)
 			{
 				C = angle - m_lowerAngle;
 				angularError = -C;
@@ -539,7 +539,7 @@ class B2RevoluteJoint extends B2Joint
 				C = B2Math.clamp(C + B2Settings.b2_angularSlop, -B2Settings.b2_maxAngularCorrection, 0.0);
 				limitImpulse = -m_motorMass * C;
 			}
-			else if (m_limitState == B2Joint.e_atUpperLimit)
+			else if (m_limitState == B2LimitState.AT_UPPER_LIMIT)
 			{
 				C = angle - m_upperAngle;
 				angularError = C;
@@ -664,5 +664,5 @@ class B2RevoluteJoint extends B2Joint
 	private var m_referenceAngle:Float;
 	private var m_lowerAngle:Float;
 	private var m_upperAngle:Float;
-	private var m_limitState:Int;
+	private var m_limitState:B2LimitState;
 }

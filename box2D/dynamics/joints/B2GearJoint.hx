@@ -107,8 +107,8 @@ class B2GearJoint extends B2Joint
 		m_J = new B2Jacobian();
 		
 		
-		var type1:Int = def.joint1.m_type;
-		var type2:Int = def.joint2.m_type;
+		var type1:B2JointType = def.joint1.m_type;
+		var type2:B2JointType = def.joint2.m_type;
 		
 		//b2Settings.b2Assert(type1 == b2Joint.e_revoluteJoint || type1 == b2Joint.e_prismaticJoint);
 		//b2Settings.b2Assert(type2 == b2Joint.e_revoluteJoint || type2 == b2Joint.e_prismaticJoint);
@@ -125,7 +125,7 @@ class B2GearJoint extends B2Joint
 		
 		m_ground1 = def.joint1.getBodyA();
 		m_bodyA = def.joint1.getBodyB();
-		if (type1 == B2Joint.e_revoluteJoint)
+		if (type1 == B2JointType.REVOLUTE_JOINT)
 		{
 			m_revolute1 = cast (def.joint1, B2RevoluteJoint);
 			m_groundAnchor1.setV( m_revolute1.m_localAnchor1 );
@@ -142,7 +142,7 @@ class B2GearJoint extends B2Joint
 		
 		m_ground2 = def.joint2.getBodyA();
 		m_bodyB = def.joint2.getBodyB();
-		if (type2 == B2Joint.e_revoluteJoint)
+		if (type2 == B2JointType.REVOLUTE_JOINT)
 		{
 			m_revolute2 = cast (def.joint2, B2RevoluteJoint);
 			m_groundAnchor2.setV( m_revolute2.m_localAnchor1 );

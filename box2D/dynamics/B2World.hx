@@ -27,6 +27,7 @@ import box2D.collision.shapes.B2CircleShape;
 import box2D.collision.shapes.B2EdgeShape;
 import box2D.collision.shapes.B2PolygonShape;
 import box2D.collision.shapes.B2Shape;
+import box2D.collision.shapes.B2ShapeType;
 import box2D.common.B2Color;
 import box2D.common.B2Settings;
 import box2D.common.math.B2Math;
@@ -1568,10 +1569,10 @@ class B2World
 		
 		switch (joint.m_type)
 		{
-		case B2Joint.e_distanceJoint:
+		case DISTANCE_JOINT:
 			m_debugDraw.drawSegment(p1, p2, color);
 		
-		case B2Joint.e_pulleyJoint:
+		case PULLEY_JOINT:
 			{
 				var pulley:B2PulleyJoint = cast (joint, B2PulleyJoint);
 				var s1:B2Vec2 = pulley.getGroundAnchorA();
@@ -1581,7 +1582,7 @@ class B2World
 				m_debugDraw.drawSegment(s1, s2, color);
 			}
 		
-		case B2Joint.e_mouseJoint:
+		case MOUSE_JOINT:
 			m_debugDraw.drawSegment(p1, p2, color);
 		
 		default:
@@ -1597,7 +1598,7 @@ class B2World
 		
 		switch (shape.m_type)
 		{
-		case B2Shape.e_circleShape:
+		case B2ShapeType.CIRCLE_SHAPE:
 			{
 				var circle:B2CircleShape = cast (shape, B2CircleShape);
 				
@@ -1608,7 +1609,7 @@ class B2World
 				m_debugDraw.drawSolidCircle(center, radius, axis, color);
 			}
 		
-		case B2Shape.e_polygonShape:
+		case B2ShapeType.POLYGON_SHAPE:
 			{
 				var i:Int;
 				var poly:B2PolygonShape = cast (shape, B2PolygonShape);
@@ -1625,14 +1626,14 @@ class B2World
 				m_debugDraw.drawSolidPolygon(vertices, vertexCount, color);
 			}
 		
-		case B2Shape.e_edgeShape:
+		case B2ShapeType.EDGE_SHAPE:
 			{
 				var edge: B2EdgeShape = cast (shape, B2EdgeShape);
 				
 				m_debugDraw.drawSegment(B2Math.mulX(xf, edge.getVertex1()), B2Math.mulX(xf, edge.getVertex2()), color);
 				
 			}
-		
+		default:
 		}
 	}
 	

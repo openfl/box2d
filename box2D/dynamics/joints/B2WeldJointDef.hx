@@ -37,7 +37,7 @@ class B2WeldJointDef extends B2JointDef
 		localAnchorA = new B2Vec2();
 		localAnchorB = new B2Vec2();
 		
-		type = B2Joint.e_weldJoint;
+		type = B2JointType.WELD_JOINT;
 		referenceAngle = 0.0;
 	}
 	

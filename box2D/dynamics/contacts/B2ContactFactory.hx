@@ -20,6 +20,7 @@ package box2D.dynamics.contacts;
 
 
 import box2D.collision.shapes.B2Shape;
+import box2D.collision.shapes.B2ShapeType;
 import box2D.dynamics.B2Fixture;
 
 
@@ -40,46 +41,49 @@ class B2ContactFactory
 		initializeRegisters();
 	}
 	
-	public function addType(createFcn:Dynamic, destroyFcn:Dynamic, type1:Int, type2:Int) : Void
+	public function addType(createFcn:Dynamic, destroyFcn:Dynamic, type1:B2ShapeType, type2:B2ShapeType) : Void
 	{
-		//b2Settings.b2Assert(b2Shape.e_unknownShape < type1 && type1 < b2Shape.e_shapeTypeCount);
-		//b2Settings.b2Assert(b2Shape.e_unknownShape < type2 && type2 < b2Shape.e_shapeTypeCount);
+		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type1 && type1 < b2Shape.e_shapeTypeCount);
+		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type2 && type2 < b2Shape.e_shapeTypeCount);
 		
-		m_registers[type1][type2].createFcn = createFcn;
-		m_registers[type1][type2].destroyFcn = destroyFcn;
-		m_registers[type1][type2].primary = true;
+		var index1 = Type.enumIndex (type1);
+		var index2 = Type.enumIndex (type2);
+		
+		m_registers[index1][index2].createFcn = createFcn;
+		m_registers[index1][index2].destroyFcn = destroyFcn;
+		m_registers[index1][index2].primary = true;
 		
 		if (type1 != type2)
 		{
-			m_registers[type2][type1].createFcn = createFcn;
-			m_registers[type2][type1].destroyFcn = destroyFcn;
-			m_registers[type2][type1].primary = false;
+			m_registers[index2][index1].createFcn = createFcn;
+			m_registers[index2][index1].destroyFcn = destroyFcn;
+			m_registers[index2][index1].primary = false;
 		}
 	}
 	public function initializeRegisters() : Void{
 		m_registers = new Array <Array <B2ContactRegister> > ();
-		for (i in 0...B2Shape.e_shapeTypeCount){
+		for (i in 0...Type.allEnums (B2ShapeType).length) {
 			m_registers[i] = new Array <B2ContactRegister> ();
-			for (j in 0...B2Shape.e_shapeTypeCount){
+			for (j in 0...Type.allEnums (B2ShapeType).length) {
 				m_registers[i][j] = new B2ContactRegister();
 			}
 		}
 		
-		addType(B2CircleContact.create, B2CircleContact.destroy, B2Shape.e_circleShape, B2Shape.e_circleShape);
-		addType(B2PolyAndCircleContact.create, B2PolyAndCircleContact.destroy, B2Shape.e_polygonShape, B2Shape.e_circleShape);
-		addType(B2PolygonContact.create, B2PolygonContact.destroy, B2Shape.e_polygonShape, B2Shape.e_polygonShape);
+		addType(B2CircleContact.create, B2CircleContact.destroy, B2ShapeType.CIRCLE_SHAPE, B2ShapeType.CIRCLE_SHAPE);
+		addType(B2PolyAndCircleContact.create, B2PolyAndCircleContact.destroy, B2ShapeType.POLYGON_SHAPE, B2ShapeType.CIRCLE_SHAPE);
+		addType(B2PolygonContact.create, B2PolygonContact.destroy, B2ShapeType.POLYGON_SHAPE, B2ShapeType.POLYGON_SHAPE);
 		
-		addType(B2EdgeAndCircleContact.create, B2EdgeAndCircleContact.destroy, B2Shape.e_edgeShape, B2Shape.e_circleShape);
-		addType(B2PolyAndEdgeContact.create, B2PolyAndEdgeContact.destroy, B2Shape.e_polygonShape, B2Shape.e_edgeShape);
+		addType(B2EdgeAndCircleContact.create, B2EdgeAndCircleContact.destroy, B2ShapeType.EDGE_SHAPE, B2ShapeType.CIRCLE_SHAPE);
+		addType(B2PolyAndEdgeContact.create, B2PolyAndEdgeContact.destroy, B2ShapeType.POLYGON_SHAPE, B2ShapeType.EDGE_SHAPE);
 	}
 	public function create(fixtureA:B2Fixture, fixtureB:B2Fixture):B2Contact{
-		var type1:Int = fixtureA.getType();
-		var type2:Int = fixtureB.getType();
+		var type1:B2ShapeType = fixtureA.getType();
+		var type2:B2ShapeType = fixtureB.getType();
 		
-		//b2Settings.b2Assert(b2Shape.e_unknownShape < type1 && type1 < b2Shape.e_shapeTypeCount);
-		//b2Settings.b2Assert(b2Shape.e_unknownShape < type2 && type2 < b2Shape.e_shapeTypeCount);
+		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type1 && type1 < b2Shape.e_shapeTypeCount);
+		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type2 && type2 < b2Shape.e_shapeTypeCount);
 		
-		var reg:B2ContactRegister = m_registers[type1][type2];
+		var reg:B2ContactRegister = m_registers[Type.enumIndex(type1)][Type.enumIndex(type2)];
 		
 		var c:B2Contact;
 		
@@ -121,13 +125,13 @@ class B2ContactFactory
 			contact.m_fixtureB.m_body.setAwake(true);
 		}
 		
-		var type1:Int = contact.m_fixtureA.getType();
-		var type2:Int = contact.m_fixtureB.getType();
+		var type1:B2ShapeType = contact.m_fixtureA.getType();
+		var type2:B2ShapeType = contact.m_fixtureB.getType();
 		
-		//b2Settings.b2Assert(b2Shape.e_unknownShape < type1 && type1 < b2Shape.e_shapeTypeCount);
-		//b2Settings.b2Assert(b2Shape.e_unknownShape < type2 && type2 < b2Shape.e_shapeTypeCount);
+		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type1 && type1 < b2Shape.e_shapeTypeCount);
+		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type2 && type2 < b2Shape.e_shapeTypeCount);
 		
-		var reg:B2ContactRegister = m_registers[type1][type2];
+		var reg:B2ContactRegister = m_registers[Type.enumIndex(type1)][Type.enumIndex(type2)];
 		
 		if (true)
 		{

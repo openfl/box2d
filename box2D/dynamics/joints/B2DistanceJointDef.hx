@@ -40,7 +40,7 @@ class B2DistanceJointDef extends B2JointDef
 		localAnchorA = new B2Vec2 ();
 		localAnchorB = new B2Vec2 ();
 		
-		type = B2Joint.e_distanceJoint;
+		type = B2JointType.DISTANCE_JOINT;
 		//localAnchor1.Set(0.0, 0.0);
 		//localAnchor2.Set(0.0, 0.0);
 		length = 1.0;

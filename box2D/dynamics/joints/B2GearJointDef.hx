@@ -31,7 +31,7 @@ class B2GearJointDef extends B2JointDef
 	public function new ()
 	{
 		super ();
-		type = B2Joint.e_gearJoint;
+		type = B2JointType.GEAR_JOINT;
 		joint1 = null;
 		joint2 = null;
 		ratio = 1.0;

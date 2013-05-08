@@ -1,0 +1,11 @@
+{
+  "name": "box2d",
+  "url": "http://github.com/jgranick/box2d",
+  "license": "MIT",
+  "tags": [ "physics", "flash", "cpp" ],
+  "description": "Box2D is a tremendously popular physics engine for most platforms.",
+  "version": "1.2.0",
+  "releasenote": "Implemented missing enum types and updated for Haxe 3",
+  "contributors": [ "singmajesty" ],
+  "dependencies": {}
+}

@@ -394,7 +394,7 @@ class B2Collision{
 			xf1 = xfB;
 			xf2 = xfA;
 			edge1 = edgeB;
-			manifold.m_type = B2Manifold.e_faceB;
+			manifold.m_type = B2ManifoldType.FACE_B;
 			flip = 1;
 		}
 		else
@@ -404,7 +404,7 @@ class B2Collision{
 			xf1 = xfA;
 			xf2 = xfB;
 			edge1 = edgeA;
-			manifold.m_type = B2Manifold.e_faceA;
+			manifold.m_type = B2ManifoldType.FACE_A;
 			flip = 0;
 		}
 
@@ -535,7 +535,7 @@ class B2Collision{
 		{
 			return;
 		}
-		manifold.m_type = B2Manifold.e_circles;
+		manifold.m_type = B2ManifoldType.CIRCLES;
 		manifold.m_localPoint.setV(circle1.m_p);
 		manifold.m_localPlaneNormal.setZero();
 		manifold.m_pointCount = 1;
@@ -616,7 +616,7 @@ class B2Collision{
 		if (separation < B2Math.MIN_VALUE)
 		{
 			manifold.m_pointCount = 1;
-			manifold.m_type = B2Manifold.e_faceA;
+			manifold.m_type = B2ManifoldType.FACE_A;
 			manifold.m_localPlaneNormal.setV(normals[normalIndex]);
 			manifold.m_localPoint.x = 0.5 * (v1.x + v2.x);
 			manifold.m_localPoint.y = 0.5 * (v1.y + v2.y);
@@ -633,7 +633,7 @@ class B2Collision{
 			if ((cLocalX-v1.x)*(cLocalX-v1.x)+(cLocalY-v1.y)*(cLocalY-v1.y) > radius * radius)
 				return;
 			manifold.m_pointCount = 1;
-			manifold.m_type = B2Manifold.e_faceA;
+			manifold.m_type = B2ManifoldType.FACE_A;
 			manifold.m_localPlaneNormal.x = cLocalX - v1.x;
 			manifold.m_localPlaneNormal.y = cLocalY - v1.y;
 			manifold.m_localPlaneNormal.normalize();
@@ -646,7 +646,7 @@ class B2Collision{
 			if ((cLocalX-v2.x)*(cLocalX-v2.x)+(cLocalY-v2.y)*(cLocalY-v2.y) > radius * radius)
 				return;
 			manifold.m_pointCount = 1;
-			manifold.m_type = B2Manifold.e_faceA;
+			manifold.m_type = B2ManifoldType.FACE_A;
 			manifold.m_localPlaneNormal.x = cLocalX - v2.x;
 			manifold.m_localPlaneNormal.y = cLocalY - v2.y;
 			manifold.m_localPlaneNormal.normalize();
@@ -662,7 +662,7 @@ class B2Collision{
 			if (separation > radius)
 				return;
 			manifold.m_pointCount = 1;
-			manifold.m_type = B2Manifold.e_faceA;
+			manifold.m_type = B2ManifoldType.FACE_A;
 			manifold.m_localPlaneNormal.x = normals[vertIndex1].x;
 			manifold.m_localPlaneNormal.y = normals[vertIndex1].y;
 			manifold.m_localPlaneNormal.normalize();

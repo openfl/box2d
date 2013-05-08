@@ -41,7 +41,7 @@ class B2PulleyJointDef extends B2JointDef
 		localAnchorA = new B2Vec2();
 		localAnchorB = new B2Vec2();
 		
-		type = B2Joint.e_pulleyJoint;
+		type = B2JointType.PULLEY_JOINT;
 		groundAnchorA.set(-1.0, 1.0);
 		groundAnchorB.set(1.0, 1.0);
 		localAnchorA.set(-1.0, 0.0);

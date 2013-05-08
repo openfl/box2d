@@ -23,6 +23,7 @@ import box2D.collision.B2Manifold;
 import box2D.collision.shapes.B2EdgeShape;
 import box2D.collision.shapes.B2PolygonShape;
 import box2D.collision.shapes.B2Shape;
+import box2D.collision.shapes.B2ShapeType;
 import box2D.common.B2Settings;
 import box2D.common.math.B2Transform;
 import box2D.dynamics.B2Body;
@@ -42,8 +43,8 @@ class B2PolyAndEdgeContact extends B2Contact{
 
 	public override function reset(fixtureA:B2Fixture = null, fixtureB:B2Fixture = null):Void{
 		super.reset(fixtureA, fixtureB);
-		B2Settings.b2Assert(fixtureA.getType() == B2Shape.e_polygonShape);
-		B2Settings.b2Assert(fixtureB.getType() == B2Shape.e_edgeShape);
+		B2Settings.b2Assert(fixtureA.getType() == B2ShapeType.POLYGON_SHAPE);
+		B2Settings.b2Assert(fixtureB.getType() == B2ShapeType.EDGE_SHAPE);
 	}
 	//~b2PolyAndEdgeContact() {}
 

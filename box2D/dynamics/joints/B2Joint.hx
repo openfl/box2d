@@ -35,7 +35,7 @@ class B2Joint
 	/**
 	* Get the type of the concrete joint.
 	*/
-	public function getType():Int{
+	public function getType():B2JointType{
 		return m_type;
 	}
 	
@@ -109,55 +109,55 @@ class B2Joint
 		
 		switch (def.type)
 		{
-		case e_distanceJoint:
+		case DISTANCE_JOINT:
 			{
 				//void* mem = allocator->Allocate(sizeof(b2DistanceJoint));
 				joint = new B2DistanceJoint(cast (def, B2DistanceJointDef));
 			}
 		
-		case e_mouseJoint:
+		case MOUSE_JOINT:
 			{
 				//void* mem = allocator->Allocate(sizeof(b2MouseJoint));
 				joint = new B2MouseJoint(cast (def, B2MouseJointDef));
 			}
 		
-		case e_prismaticJoint:
+		case PRISMATIC_JOINT:
 			{
 				//void* mem = allocator->Allocate(sizeof(b2PrismaticJoint));
 				joint = new B2PrismaticJoint(cast (def, B2PrismaticJointDef));
 			}
 		
-		case e_revoluteJoint:
+		case REVOLUTE_JOINT:
 			{
 				//void* mem = allocator->Allocate(sizeof(b2RevoluteJoint));
 				joint = new B2RevoluteJoint(cast (def, B2RevoluteJointDef));
 			}
 		
-		case e_pulleyJoint:
+		case PULLEY_JOINT:
 			{
 				//void* mem = allocator->Allocate(sizeof(b2PulleyJoint));
 				joint = new B2PulleyJoint(cast (def, B2PulleyJointDef));
 			}
 		
-		case e_gearJoint:
+		case GEAR_JOINT:
 			{
 				//void* mem = allocator->Allocate(sizeof(b2GearJoint));
 				joint = new B2GearJoint(cast (def, B2GearJointDef));
 			}
 		
-		case e_lineJoint:
+		case LINE_JOINT:
 			{
 				//void* mem = allocator->Allocate(sizeof(b2LineJoint));
 				joint = new B2LineJoint(cast (def, B2LineJointDef));
 			}
 			
-		case e_weldJoint:
+		case WELD_JOINT:
 			{
 				//void* mem = allocator->Allocate(sizeof(b2WeldJoint));
 				joint = new B2WeldJoint(cast (def, B2WeldJointDef));
 			}
 			
-		case e_frictionJoint:
+		case FRICTION_JOINT:
 			{
 				//void* mem = allocator->Allocate(sizeof(b2FrictionJoint));
 				joint = new B2FrictionJoint(cast (def, B2FrictionJointDef));
@@ -243,7 +243,7 @@ class B2Joint
 	// This returns true if the position errors are within tolerance.
 	public function solvePositionConstraints(baumgarte:Float):Bool { return false; }
 
-	public var m_type:Int;
+	public var m_type:B2JointType;
 	public var m_prev:B2Joint;
 	public var m_next:B2Joint;
 	public var m_edgeA:B2JointEdge;
@@ -267,21 +267,21 @@ class B2Joint
 	// ENUMS
 	
 	// enum b2JointType
-	static public var e_unknownJoint:Int = 0;
-	static public var e_revoluteJoint:Int = 1;
-	static public var e_prismaticJoint:Int = 2;
-	static public var e_distanceJoint:Int = 3;
-	static public var e_pulleyJoint:Int = 4;
-	static public var e_mouseJoint:Int = 5;
-	static public var e_gearJoint:Int = 6;
-	static public var e_lineJoint:Int = 7;
-	static public var e_weldJoint:Int = 8;
-	static public var e_frictionJoint:Int = 9;
+	//static public var e_unknownJoint:Int = 0;
+	//static public var e_revoluteJoint:Int = 1;
+	//static public var e_prismaticJoint:Int = 2;
+	//static public var e_distanceJoint:Int = 3;
+	//static public var e_pulleyJoint:Int = 4;
+	//static public var e_mouseJoint:Int = 5;
+	//static public var e_gearJoint:Int = 6;
+	//static public var e_lineJoint:Int = 7;
+	//static public var e_weldJoint:Int = 8;
+	//static public var e_frictionJoint:Int = 9;
 
 	// enum b2LimitState
-	static public var e_inactiveLimit:Int = 0;
-	static public var e_atLowerLimit:Int = 1;
-	static public var e_atUpperLimit:Int = 2;
-	static public var e_equalLimits:Int = 3;
+	//static public var e_inactiveLimit:Int = 0;
+	//static public var e_atLowerLimit:Int = 1;
+	//static public var e_atUpperLimit:Int = 2;
+	//static public var e_equalLimits:Int = 3;
 	
 }

@@ -358,7 +358,7 @@ class B2EdgeShape extends B2Shape
 		
 		m_cornerDir2 = new B2Vec2();
 		
-		m_type = B2Shape.e_edgeShape;
+		m_type = B2ShapeType.EDGE_SHAPE;
 		
 		m_prevEdge = null;
 		m_nextEdge = null;

@@ -55,7 +55,7 @@ class B2PositionSolverManifold
 		
 		switch(cc.type)
 		{
-			case B2Manifold.e_circles:
+			case CIRCLES:
 			{
 				//var pointA:B2Vec2 = cc.bodyA.GetWorldPoint(cc.localPoint);
 				tMat = cc.bodyA.m_xf.R;
@@ -86,7 +86,7 @@ class B2PositionSolverManifold
 				m_separations[0] = dX * m_normal.x + dY * m_normal.y - cc.radius;
 			}
 			
-			case B2Manifold.e_faceA:
+			case FACE_A:
 			{
 				//m_normal = cc.bodyA.GetWorldVector(cc.localPlaneNormal);
 				tMat = cc.bodyA.m_xf.R;
@@ -112,7 +112,7 @@ class B2PositionSolverManifold
 				}
 			}
 			
-			case B2Manifold.e_faceB:
+			case FACE_B:
 			{
 				//m_normal = cc.bodyB.GetWorldVector(cc.localPlaneNormal);
 				tMat = cc.bodyB.m_xf.R;

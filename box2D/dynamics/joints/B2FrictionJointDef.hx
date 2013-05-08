@@ -36,7 +36,7 @@ class B2FrictionJointDef extends B2JointDef
 		localAnchorA = new B2Vec2();
 		localAnchorB = new B2Vec2();
 		
-		type = B2Joint.e_frictionJoint;
+		type = B2JointType.FRICTION_JOINT;
 		maxForce = 0.0;
 		maxTorque = 0.0;
 	}

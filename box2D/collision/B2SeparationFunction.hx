@@ -29,9 +29,9 @@ import box2D.common.math.B2Vec2;
 class B2SeparationFunction
 {
 	//enum Type
-	public static var e_points:Int = 0x01;
-	public static var e_faceA:Int = 0x02;
-	public static var e_faceB:Int = 0x04;
+	//public static var e_points:Int = 0x01;
+	//public static var e_faceA:Int = 0x02;
+	//public static var e_faceB:Int = 0x04;
 	
 	public function initialize(cache:B2SimplexCache,
 								proxyA:B2DistanceProxy, transformA:B2Transform,
@@ -61,7 +61,7 @@ class B2SeparationFunction
 		
 		if (count == 1)
 		{
-			m_type = e_points;
+			m_type = B2SeparationFunctionType.POINTS;
 			localPointA = m_proxyA.getVertex(cache.indexA[0]);
 			localPointB = m_proxyB.getVertex(cache.indexB[0]);
 			//pointA = b2Math.b2MulX(transformA, localPointA);
@@ -82,7 +82,7 @@ class B2SeparationFunction
 		else if (cache.indexB[0] == cache.indexB[1])
 		{
 			// Two points on A and one on B
-			m_type = e_faceA;
+			m_type = B2SeparationFunctionType.FACE_A;
 			localPointA1 = m_proxyA.getVertex(cache.indexA[0]);
 			localPointA2 = m_proxyA.getVertex(cache.indexA[1]);
 			localPointB = m_proxyB.getVertex(cache.indexB[0]);
@@ -117,7 +117,7 @@ class B2SeparationFunction
 		else if (cache.indexA[0] == cache.indexA[0])
 		{
 			// Two points on B and one on A
-			m_type = e_faceB;
+			m_type = B2SeparationFunctionType.FACE_B;
 			localPointB1 = m_proxyB.getVertex(cache.indexB[0]);
 			localPointB2 = m_proxyB.getVertex(cache.indexB[1]);
 			localPointA = m_proxyA.getVertex(cache.indexA[0]);
@@ -196,7 +196,7 @@ class B2SeparationFunction
 			
 			if (s == 0.0 || s == 1.0)
 			{
-				m_type = e_faceB;
+				m_type = B2SeparationFunctionType.FACE_B;
 				m_axis = B2Math.crossVF(B2Math.subtractVV(localPointB2, localPointB1), 1.0);
 				m_axis.normalize();
                 
@@ -227,7 +227,7 @@ class B2SeparationFunction
 			}
 			else
 			{
-				m_type = e_faceA;
+				m_type = B2SeparationFunctionType.FACE_A;
 				m_axis = B2Math.crossVF(B2Math.subtractVV(localPointA2, localPointA1), 1.0);
 				
 				m_localPoint = localPointA;
@@ -270,7 +270,7 @@ class B2SeparationFunction
 		var normal:B2Vec2;
 		switch(m_type)
 		{
-			case e_points:
+			case POINTS:
 			{
 				axisA = B2Math.mulTMV(transformA.R, m_axis);
 				axisB = B2Math.mulTMV(transformB.R, m_axis.getNegative());
@@ -282,7 +282,7 @@ class B2SeparationFunction
 				seperation = (pointB.x - pointA.x) * m_axis.x + (pointB.y - pointA.y) * m_axis.y;
 				return seperation;
 			}
-			case e_faceA:
+			case FACE_A:
 			{
 				normal = B2Math.mulMV(transformA.R, m_axis);
 				pointA = B2Math.mulX(transformA, m_localPoint);
@@ -296,7 +296,7 @@ class B2SeparationFunction
 				seperation = (pointB.x - pointA.x) * normal.x + (pointB.y - pointA.y) * normal.y;
 				return seperation;
 			}
-			case e_faceB:
+			case FACE_B:
 			{
 				normal = B2Math.mulMV(transformB.R, m_axis);
 				pointB = B2Math.mulX(transformB, m_localPoint);
@@ -310,9 +310,9 @@ class B2SeparationFunction
 				seperation = (pointA.x - pointB.x) * normal.x + (pointA.y - pointB.y) * normal.y;
 				return seperation;
 			}
-			default:
-			B2Settings.b2Assert(false);
-			return 0.0;
+			//default:
+			//B2Settings.b2Assert(false);
+			//return 0.0;
 		}
 	}
 	
@@ -326,7 +326,7 @@ class B2SeparationFunction
 	
 	public var m_proxyA:B2DistanceProxy;
 	public var m_proxyB:B2DistanceProxy;
-	public var m_type:Int;
+	public var m_type:B2SeparationFunctionType;
 	public var m_localPoint:B2Vec2;
 	public var m_axis:B2Vec2;
 }

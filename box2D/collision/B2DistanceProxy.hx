@@ -22,6 +22,7 @@ package box2D.collision;
 import box2D.collision.shapes.B2CircleShape;
 import box2D.collision.shapes.B2PolygonShape;
 import box2D.collision.shapes.B2Shape;
+import box2D.collision.shapes.B2ShapeType;
 import box2D.common.B2Settings;
 import box2D.common.math.B2Vec2;
 
@@ -40,7 +41,7 @@ class B2DistanceProxy
 	{
 		switch(shape.getType())
 		{
-			case B2Shape.e_circleShape:
+			case B2ShapeType.CIRCLE_SHAPE:
 			{
 				var circle:B2CircleShape = cast (shape, B2CircleShape);
 				m_vertices = new Array <B2Vec2> ();
@@ -49,7 +50,7 @@ class B2DistanceProxy
 				m_radius = circle.m_radius;
 			}
 			
-			case B2Shape.e_polygonShape:
+			case B2ShapeType.POLYGON_SHAPE:
 			{
 				var polygon:B2PolygonShape =  cast (shape, B2PolygonShape);
 				m_vertices = polygon.m_vertices;

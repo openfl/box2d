@@ -218,7 +218,7 @@ class B2CircleShape extends B2Shape
 	public function new (radius:Float = 0){
 		super();
 		m_p = new B2Vec2();
-		m_type = B2Shape.e_circleShape;
+		m_type = B2ShapeType.CIRCLE_SHAPE;
 		m_radius = radius;
 	}
 

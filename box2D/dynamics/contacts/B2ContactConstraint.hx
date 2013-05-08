@@ -20,6 +20,7 @@ package box2D.dynamics.contacts;
 
 
 import box2D.collision.B2Manifold;
+import box2D.collision.B2ManifoldType;
 import box2D.common.B2Settings;
 import box2D.common.math.B2Mat22;
 import box2D.common.math.B2Vec2;
@@ -50,7 +51,7 @@ class B2ContactConstraint
 	public var K:B2Mat22;
 	public var bodyA:B2Body;
 	public var bodyB:B2Body;
-	public var type:Int;//b2Manifold::Type
+	public var type:B2ManifoldType;//b2Manifold::Type
 	public var radius:Float;
 	public var friction:Float;
 	public var restitution:Float;

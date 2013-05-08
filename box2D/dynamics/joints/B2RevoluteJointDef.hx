@@ -46,7 +46,7 @@ class B2RevoluteJointDef extends B2JointDef
 		localAnchorA = new B2Vec2();
 		localAnchorB = new B2Vec2();
 		
-		type = B2Joint.e_revoluteJoint;
+		type = B2JointType.REVOLUTE_JOINT;
 		localAnchorA.set(0.0, 0.0);
 		localAnchorB.set(0.0, 0.0);
 		referenceAngle = 0.0;

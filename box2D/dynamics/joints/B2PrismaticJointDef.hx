@@ -41,7 +41,7 @@ class B2PrismaticJointDef extends B2JointDef
 		localAnchorB = new B2Vec2();
 		localAxisA = new B2Vec2();
 		
-		type = B2Joint.e_prismaticJoint;
+		type = B2JointType.PRISMATIC_JOINT;
 		//localAnchor1.SetZero();
 		//localAnchor2.SetZero();
 		localAxisA.set(1.0, 0.0);
