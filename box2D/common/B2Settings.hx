@@ -69,7 +69,7 @@ class B2Settings{
 	 * this smaller means polygons will have and insufficient for continuous collision.
 	 * Making it larger may create artifacts for vertex collision.
 	 */
-	static public var b2_polygonRadius:Float = 2.0 * b2_linearSlop;
+	static public var b2_polygonRadius:Float = 2.0 * /*b2_linearSlop*/ 0.005;
 	
 	// Dynamics
 	
@@ -83,7 +83,7 @@ class B2Settings{
 	* A small angle used as a collision and constraint tolerance. Usually it is
 	* chosen to be numerically significant, but visually insignificant.
 	*/
-	static public var b2_angularSlop:Float = 2.0 / 180.0 * b2_pi;			// 2 degrees
+	static public var b2_angularSlop:Float = 2.0 / 180.0 * /*b2_pi*/ Math.PI;			// 2 degrees
 	
 	/**
 	* Continuous collision detection (CCD) works with core, shrunken shapes. This is the
@@ -91,7 +91,7 @@ class B2Settings{
 	* larger than b2_linearSlop.
     * @see b2_linearSlop
 	*/
-	static public var b2_toiSlop:Float = 8.0 * b2_linearSlop;
+	static public var b2_toiSlop:Float = 8.0 * /*b2_linearSlop*/ 0.005;
 	
 	/**
 	* Maximum number of contacts to be handled to solve a TOI island.
@@ -119,21 +119,21 @@ class B2Settings{
 	* The maximum angular position correction used when solving constraints. This helps to
 	* prevent overshoot.
 	*/
-	static public var b2_maxAngularCorrection:Float = 8.0 / 180.0 * b2_pi;			// 8 degrees
+	static public var b2_maxAngularCorrection:Float = 8.0 / 180.0 * /*b2_pi*/ Math.PI;			// 8 degrees
 	
 	/**
 	* The maximum linear velocity of a body. This limit is very large and is used
 	* to prevent numerical problems. You shouldn't need to adjust this.
 	*/
 	static public var b2_maxTranslation:Float = 2.0;
-	static public var b2_maxTranslationSquared:Float = b2_maxTranslation * b2_maxTranslation;
+	static public var b2_maxTranslationSquared:Float = /*b2_maxTranslation * b2_maxTranslation*/ 4.0;
 	
 	/**
 	* The maximum angular velocity of a body. This limit is very large and is used
 	* to prevent numerical problems. You shouldn't need to adjust this.
 	*/
-	static public var b2_maxRotation:Float = 0.5 * b2_pi;
-	static public var b2_maxRotationSquared:Float = b2_maxRotation * b2_maxRotation;
+	static public var b2_maxRotation:Float = 0.5 * /*b2_pi*/ Math.PI;
+	static public var b2_maxRotationSquared:Float = /*b2_maxRotation * b2_maxRotation*/ (0.5 * Math.PI) * (0.5 * Math.PI);
 	
 	/**
 	* This scale factor controls how fast overlap is resolved. Ideally this would be 1 so
@@ -173,7 +173,7 @@ class B2Settings{
 	/**
 	* A body cannot sleep if its angular velocity is above this tolerance.
 	*/
-	static public var b2_angularSleepTolerance:Float = 2.0 / 180.0 * B2Settings.b2_pi;	// 2 degrees/s
+	static public var b2_angularSleepTolerance:Float = 2.0 / 180.0 * /*B2Settings.b2_pi*/ Math.PI;	// 2 degrees/s
 	
 	// assert
     /**
