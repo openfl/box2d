@@ -722,6 +722,7 @@ class B2Body
 		{
 			if (f.m_density == 0.0)
 			{
+				f = f.m_next;
 				continue;
 			}
 			
