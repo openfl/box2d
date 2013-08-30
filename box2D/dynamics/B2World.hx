@@ -1637,7 +1637,7 @@ class B2World
 		}
 	}
 	
-	public var m_flags:Int;
+	public var m_flags:Int = 0;
 
 	public var m_contactManager:B2ContactManager;
 	
