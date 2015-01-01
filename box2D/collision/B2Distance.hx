@@ -34,9 +34,9 @@ class B2Distance
 
 // GJK using Voronoi regions (Christer Ericson) and Barycentric coordinates.
 
-private static var b2_gjkCalls:Int;
-private static var b2_gjkIters:Int;
-private static var b2_gjkMaxIters:Int;
+private static var b2_gjkCalls:Int = 0;
+private static var b2_gjkIters:Int = 0;
+private static var b2_gjkMaxIters:Int = 0;
 
 private static var s_simplex:B2Simplex = new B2Simplex();
 private static var s_saveA:Array <Int> = new Array <Int> ();

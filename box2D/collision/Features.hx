@@ -44,7 +44,7 @@ class Features
 		_m_id._key = (_m_id._key & 0xffffff00) | (_referenceEdge & 0x000000ff);
 		return value;
 	}
-	public var _referenceEdge:Int;
+	public var _referenceEdge:Int = 0;
 	
 	/**
 	* The edge most anti-parallel to the reference edge.
@@ -59,7 +59,7 @@ class Features
 		_m_id._key = (_m_id._key & 0xffff00ff) | ((_incidentEdge << 8) & 0x0000ff00);
 		return value;
 	}
-	public var _incidentEdge:Int;
+	public var _incidentEdge:Int = 0;
 	
 	/**
 	* The vertex (0 or 1) on the incident edge that was clipped.
@@ -74,7 +74,7 @@ class Features
 		_m_id._key = (_m_id._key & 0xff00ffff) | ((_incidentVertex << 16) & 0x00ff0000);
 		return value;
 	}
-	public var _incidentVertex:Int;
+	public var _incidentVertex:Int = 0;
 	
 	/**
 	* A value of 1 indicates that the reference edge is on shape2.
@@ -89,7 +89,7 @@ class Features
 		_m_id._key = (_m_id._key & 0x00ffffff) | ((_flip << 24) & 0xff000000);
 		return value;
 	}
-	public var _flip:Int;
+	public var _flip:Int = 0;
 	
 	
 	public var _m_id:B2ContactID;

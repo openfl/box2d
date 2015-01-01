@@ -220,6 +220,8 @@ class B2DynamicTreeBroadPhase implements IBroadPhase
 		m_pairBuffer = new Array <B2DynamicTreePair>();
 		m_pairCount = 0;
 		
+		m_proxyCount = 0;
+		
 	}
 	
 	private var m_tree:B2DynamicTree;

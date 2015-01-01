@@ -53,5 +53,5 @@ class B2ContactID
 	}
 	public var features:Features;
 	/** Used to quickly compare contact ids. */
-	public var _key:Int;
+	public var _key:Int = 0;
 }
