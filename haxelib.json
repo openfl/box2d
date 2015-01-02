@@ -4,8 +4,8 @@
   "license": "MIT",
   "tags": [ "physics", "flash", "cpp" ],
   "description": "Box2D is a tremendously popular physics engine for most platforms.",
-  "version": "1.2.1",
-  "releasenote": "Minor Neko fixes",
+  "version": "1.2.2",
+  "releasenote": "Add abstract enums",
   "contributors": [ "singmajesty" ],
   "dependencies": {}
 }
