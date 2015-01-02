@@ -1,11 +1,11 @@
 package box2D.dynamics.joints;
 
 
-enum B2LimitState {
+@:enum abstract B2LimitState(Int) from Int to Int {
 	
-	INACTIVE_LIMIT;
-	AT_LOWER_LIMIT;
-	AT_UPPER_LIMIT;
-	EQUAL_LIMITS;
+	var INACTIVE_LIMIT = 0;
+	var AT_LOWER_LIMIT = 1;
+	var AT_UPPER_LIMIT = 2;
+	var EQUAL_LIMITS = 3;
 	
 }
