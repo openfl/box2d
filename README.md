@@ -19,7 +19,7 @@ The syntax has been updated to follow the standard Haxe convention, for example:
   	player = world.CreateBody (body);
   	player.CreateFixture (fixture);
 
-The above ActionScript code would be written like this:
+The above ActionScript code would be written like this in Haxe:
 
     var world = new B2World (new B2Vec2 (0, 10.0), true);
     var worldScale = 30;
