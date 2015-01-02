@@ -47,18 +47,18 @@ class B2BodyDef
 		awake = true;
 		fixedRotation = false;
 		bullet = false;
-		type = B2Body.b2_staticBody;
+		type = STATIC_BODY;
 		active = true;
 		inertiaScale = 1.0;
 	}
 
 	/** The body type: static, kinematic, or dynamic. A member of the b2BodyType class
 	 * Note: if a dynamic body would have zero mass, the mass is set to one.
-	 * @see b2Body#b2_staticBody
-	 * @see b2Body#b2_dynamicBody
-	 * @see b2Body#b2_kinematicBody
+	 * @see B2BodyType#STATIC_BODY
+	 * @see B2BodyType#DYNAMIC_BODY
+	 * @see B2BodyType#KINEMATIC_BODY
 	 */
-	public var type:Int;
+	public var type:B2BodyType;
 
 	/**
 	 * The world position of the body. Avoid creating bodies at the origin

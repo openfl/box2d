@@ -367,7 +367,7 @@ class B2Body
 	* @param v the new linear velocity of the center of mass.
 	*/
 	public function setLinearVelocity(v:B2Vec2) : Void {
-		if ( m_type == b2_staticBody )
+		if ( m_type == STATIC_BODY )
 		{
 			return;
 		}
@@ -387,7 +387,7 @@ class B2Body
 	* @param omega the new angular velocity in radians/second.
 	*/
 	public function setAngularVelocity(omega:Float) : Void {
-		if ( m_type == b2_staticBody )
+		if ( m_type == STATIC_BODY )
 		{
 			return;
 		}
@@ -432,7 +432,7 @@ class B2Body
 	* @param point the world position of the point of application.
 	*/
 	public function applyForce(force:B2Vec2, point:B2Vec2) : Void{
-		if (m_type != b2_dynamicBody)
+		if (m_type != DYNAMIC_BODY)
 		{
 			return;
 		}
@@ -456,7 +456,7 @@ class B2Body
 	* @param torque about the z-axis (out of the screen), usually in N-m.
 	*/
 	public function applyTorque(torque:Float) : Void {
-		if (m_type != b2_dynamicBody)
+		if (m_type != DYNAMIC_BODY)
 		{
 			return;
 		}
@@ -476,7 +476,7 @@ class B2Body
 	* @param point the world position of the point of application.
 	*/
 	public function applyImpulse(impulse:B2Vec2, point:B2Vec2) : Void{
-		if (m_type != b2_dynamicBody)
+		if (m_type != DYNAMIC_BODY)
 		{
 			return;
 		}
@@ -654,7 +654,7 @@ class B2Body
 			return;
 		}
 		
-		if (m_type != b2_dynamicBody)
+		if (m_type != DYNAMIC_BODY)
 		{
 			return;
 		}
@@ -707,7 +707,7 @@ class B2Body
 		m_sweep.localCenter.setZero();
 		
 		// Static and kinematic bodies have zero mass.
-		if (m_type == b2_staticBody || m_type == b2_kinematicBody)
+		if (m_type == STATIC_BODY || m_type == KINEMATIC_BODY)
 		{
 			return;
 		}
@@ -881,7 +881,7 @@ class B2Body
 	 * Set the type of this body. This may alter the mass and velocity
 	 * @param	type - enum stored as a static member of b2Body
 	 */ 
-	public function setType( type:Int ):Void
+	public function setType( type:B2BodyType ):Void
 	{
 		if ( m_type == type )
 		{
@@ -892,7 +892,7 @@ class B2Body
 		
 		resetMassData();
 		
-		if ( m_type == b2_staticBody )
+		if ( m_type == STATIC_BODY )
 		{
 			m_linearVelocity.setZero();
 			m_angularVelocity = 0.0;
@@ -916,7 +916,7 @@ class B2Body
 	 * Get the type of this body.
 	 * @return type enum as a uint
 	 */ 
-	public function getType():Int
+	public function getType():B2BodyType
 	{
 		return m_type;
 	}
@@ -1239,7 +1239,7 @@ class B2Body
 		
 		m_type = bd.type;
 		
-		if (m_type == b2_dynamicBody)
+		if (m_type == DYNAMIC_BODY)
 		{
 			m_mass = 1.0;
 			m_invMass = 1.0;
@@ -1300,7 +1300,7 @@ class B2Body
 	// It may lie, depending on the collideConnected flag.
 	public function shouldCollide(other:B2Body) : Bool {
 		// At least one body should be dynamic
-		if (m_type != b2_dynamicBody && other.m_type != b2_dynamicBody )
+		if (m_type != DYNAMIC_BODY && other.m_type != DYNAMIC_BODY )
 		{
 			return false;
 		}
@@ -1328,7 +1328,7 @@ class B2Body
 	}
 
 	public var m_flags:Int;
-	public var m_type:Int;
+	public var m_type:B2BodyType;
 	
 	public var m_islandIndex:Int;
 

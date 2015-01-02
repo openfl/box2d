@@ -1,4 +1,4 @@
-package box2d.dynamics;
+package box2D.dynamics;
 
 
 @:enum abstract B2BodyType(Int) from Int to Int {

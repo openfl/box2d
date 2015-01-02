@@ -173,7 +173,7 @@ class B2Island
 		{
 			b = m_bodies[i];
 			
-			if (b.getType() != B2Body.b2_dynamicBody)
+			if (b.getType() != DYNAMIC_BODY)
 				continue;
 			
 			// Integrate velocities.
@@ -230,7 +230,7 @@ class B2Island
 		{
 			b = m_bodies[i];
 			
-			if (b.getType() == B2Body.b2_staticBody)
+			if (b.getType() == STATIC_BODY)
 				continue;
 				
 			// Check for large velocities.
@@ -304,7 +304,7 @@ class B2Island
 			for (i in 0...m_bodyCount)
 			{
 				b = m_bodies[i];
-				if (b.getType() == B2Body.b2_staticBody)
+				if (b.getType() == STATIC_BODY)
 				{
 					continue;
 				}
@@ -377,7 +377,7 @@ class B2Island
 		{
 			var b:B2Body = m_bodies[i];
 			
-			if (b.getType() == B2Body.b2_staticBody)
+			if (b.getType() == STATIC_BODY)
 				continue;
 				
 			// Check for large velocities.

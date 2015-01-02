@@ -683,12 +683,12 @@ class B2World
 						color.set(0.5, 0.5, 0.3);
 						drawShape(s, xf, color);
 					}
-					else if (b.getType() == B2Body.b2_staticBody)
+					else if (b.getType() == STATIC_BODY)
 					{
 						color.set(0.5, 0.9, 0.5);
 						drawShape(s, xf, color);
 					}
-					else if (b.getType() == B2Body.b2_kinematicBody)
+					else if (b.getType() == KINEMATIC_BODY)
 					{
 						color.set(0.5, 0.5, 0.9);
 						drawShape(s, xf, color);
@@ -1021,7 +1021,7 @@ class B2World
 			}
 			
 			// The seed can be dynamic or kinematic.
-			if (seed.getType() == B2Body.b2_staticBody)
+			if (seed.getType() == STATIC_BODY)
 			{
 				seed = seed.m_next;
 				continue;
@@ -1049,7 +1049,7 @@ class B2World
 				
 				// To keep islands as small as possible, we don't
 				// propagate islands across static bodies.
-				if (b.getType() == B2Body.b2_staticBody)
+				if (b.getType() == STATIC_BODY)
 				{
 					continue;
 				}
@@ -1135,7 +1135,7 @@ class B2World
 			{
 				// Allow static bodies to participate in other islands.
 				b = island.m_bodies[i];
-				if (b.getType() == B2Body.b2_staticBody)
+				if (b.getType() == STATIC_BODY)
 				{
 					b.m_flags &= ~B2Body.e_islandFlag;
 				}
@@ -1160,7 +1160,7 @@ class B2World
 				continue;
 			}
 			
-			if (b.getType() == B2Body.b2_staticBody)
+			if (b.getType() == STATIC_BODY)
 			{
 				b = b.m_next;
 				continue;
@@ -1266,8 +1266,8 @@ class B2World
 					bA = fA.m_body;
 					bB = fB.m_body;
 					
-					if ((bA.getType() != B2Body.b2_dynamicBody || bA.isAwake() == false) &&
-						(bB.getType() != B2Body.b2_dynamicBody || bB.isAwake() == false))
+					if ((bA.getType() != DYNAMIC_BODY || bA.isAwake() == false) &&
+						(bB.getType() != DYNAMIC_BODY || bB.isAwake() == false))
 					{
 						c = c.m_next;
 						continue;
@@ -1358,7 +1358,7 @@ class B2World
 			
 			// Build the TOI island. We need a dynamic seed.
 			var seed:B2Body = bA;
-			if (seed.getType() != B2Body.b2_dynamicBody)
+			if (seed.getType() != DYNAMIC_BODY)
 			{
 				seed = bB;
 			}
@@ -1387,7 +1387,7 @@ class B2World
 				
 				// To keep islands as small as possible, we don't
 				// propagate islands across static or kinematic bodies.
-				if (b.getType() != B2Body.b2_dynamicBody)
+				if (b.getType() != DYNAMIC_BODY)
 				{
 					continue;
 				}
@@ -1434,7 +1434,7 @@ class B2World
 					}
 					
 					// Synchronize the connected body.
-					if (other.getType() != B2Body.b2_staticBody)
+					if (other.getType() != STATIC_BODY)
 					{
 						other.advance(minTOI);
 						other.setAwake(true);
@@ -1476,7 +1476,7 @@ class B2World
 					}
 						
 					// Synchronize the connected body.
-					if (other.getType() != B2Body.b2_staticBody)
+					if (other.getType() != STATIC_BODY)
 					{
 						other.advance(minTOI);
 						other.setAwake(true);
@@ -1513,7 +1513,7 @@ class B2World
 					continue;
 				}
 				
-				if (b.getType() != B2Body.b2_dynamicBody)
+				if (b.getType() != DYNAMIC_BODY)
 				{
 					continue;
 				}

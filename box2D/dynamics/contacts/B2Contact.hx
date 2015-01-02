@@ -210,7 +210,7 @@ class B2Contact
 		var bodyA:B2Body = fixtureA.getBody();
 		var bodyB:B2Body = fixtureB.getBody();
 		
-		if (bodyA.getType() != B2Body.b2_dynamicBody || bodyA.isBullet() || bodyB.getType() != B2Body.b2_dynamicBody || bodyB.isBullet())
+		if (bodyA.getType() != DYNAMIC_BODY || bodyA.isBullet() || bodyB.getType() != DYNAMIC_BODY || bodyB.isBullet())
 		{
 			m_flags |= e_continuousFlag;
 		}
