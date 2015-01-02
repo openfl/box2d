@@ -1,4 +1,4 @@
-box2d
+Box2D
 =====
 
 The Box2D rigid-body 2D physics engine, ported to Haxe from the Box2DFlash port by Boris the Brave.
