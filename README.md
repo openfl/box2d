@@ -39,10 +39,26 @@ The above ActionScript code would be written like this:
 Installation
 ============
 
-You can easily install box2d using haxelib:
+You can easily install Box2D using haxelib:
 
-    haxelib install openfl
+    haxelib install box2d
 
 To add it to a Lime or OpenFL project, add this to your project file:
 
     <haxelib name="box2d" />
+
+
+Development Builds
+==================
+
+Clone the Box2D repository:
+
+    git clone https://github.com/openfl/box2d
+
+Tell haxelib where your development copy of Box2D is installed:
+
+    haxelib dev box2d box2d
+
+To return to release builds:
+
+    haxelib dev box2d
