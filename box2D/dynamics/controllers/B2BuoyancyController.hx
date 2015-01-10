@@ -134,7 +134,7 @@ class B2BuoyancyController extends B2Controller
 			}
 			//Buoyancy
 			var buoyancyForce:B2Vec2 = gravity.getNegative();
-			buoyancyForce.multiply(density*area)
+			buoyancyForce.multiply(density*area);
 			body.applyForce(buoyancyForce,massc);
 			//Linear drag
 			var dragForce:B2Vec2 = body.getLinearVelocityFromWorldPoint(areac);
@@ -143,7 +143,7 @@ class B2BuoyancyController extends B2Controller
 			body.applyForce(dragForce,areac);
 			//Angular drag
 			//TODO: Something that makes more physical sense?
-			body.applyTorque(-body.getInertia()/body.getMass()*area*body.getAngularVelocity()*angularDrag)
+			body.applyTorque(-body.getInertia()/body.getMass()*area*body.getAngularVelocity()*angularDrag);
 			i = i.nextBody;
 		}
 	}
