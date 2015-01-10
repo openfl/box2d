@@ -1,3 +1,5 @@
+[![Haxelib Version](https://img.shields.io/github/tag/openfl/box2d.svg?style=flat&label=release)](http://lib.haxe.org/p/box2d)
+
 Box2D
 =====
 
