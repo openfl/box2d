@@ -1,12 +1,12 @@
 package box2D.collision.shapes;
 
 
-enum B2ShapeType {
+@:enum abstract B2ShapeType(Int) from Int to Int {
 
-	UNKNOWN_SHAPE;
-	CIRCLE_SHAPE;
-	POLYGON_SHAPE;
-	EDGE_SHAPE;
+	var UNKNOWN_SHAPE = 0;
+	var CIRCLE_SHAPE = 1;
+	var POLYGON_SHAPE = 2;
+	var EDGE_SHAPE = 3;
 	
 }
 

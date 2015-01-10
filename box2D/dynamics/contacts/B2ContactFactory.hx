@@ -46,25 +46,28 @@ class B2ContactFactory
 		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type1 && type1 < b2Shape.e_shapeTypeCount);
 		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type2 && type2 < b2Shape.e_shapeTypeCount);
 		
-		var index1 = Type.enumIndex (type1);
-		var index2 = Type.enumIndex (type2);
-		
-		m_registers[index1][index2].createFcn = createFcn;
-		m_registers[index1][index2].destroyFcn = destroyFcn;
-		m_registers[index1][index2].primary = true;
+		m_registers[type1][type2].createFcn = createFcn;
+		m_registers[type1][type2].destroyFcn = destroyFcn;
+		m_registers[type1][type2].primary = true;
 		
 		if (type1 != type2)
 		{
-			m_registers[index2][index1].createFcn = createFcn;
-			m_registers[index2][index1].destroyFcn = destroyFcn;
-			m_registers[index2][index1].primary = false;
+			m_registers[type2][type1].createFcn = createFcn;
+			m_registers[type2][type1].destroyFcn = destroyFcn;
+			m_registers[type2][type1].primary = false;
 		}
 	}
 	public function initializeRegisters() : Void{
 		m_registers = new Array <Array <B2ContactRegister> > ();
-		for (i in 0...Type.allEnums (B2ShapeType).length) {
+		/*for (i in 0...Type.allEnums (B2ShapeType).length) {
 			m_registers[i] = new Array <B2ContactRegister> ();
 			for (j in 0...Type.allEnums (B2ShapeType).length) {
+				m_registers[i][j] = new B2ContactRegister();
+			}
+		}*/
+		for (i in 0...4) {
+			m_registers[i] = new Array <B2ContactRegister> ();
+			for (j in 0...4) {
 				m_registers[i][j] = new B2ContactRegister();
 			}
 		}
@@ -83,7 +86,7 @@ class B2ContactFactory
 		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type1 && type1 < b2Shape.e_shapeTypeCount);
 		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type2 && type2 < b2Shape.e_shapeTypeCount);
 		
-		var reg:B2ContactRegister = m_registers[Type.enumIndex(type1)][Type.enumIndex(type2)];
+		var reg:B2ContactRegister = m_registers[type1][type2];
 		
 		var c:B2Contact;
 		
@@ -131,7 +134,7 @@ class B2ContactFactory
 		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type1 && type1 < b2Shape.e_shapeTypeCount);
 		//b2Settings.b2Assert(B2ShapeType.UNKNOWN_SHAPE < type2 && type2 < b2Shape.e_shapeTypeCount);
 		
-		var reg:B2ContactRegister = m_registers[Type.enumIndex(type1)][Type.enumIndex(type2)];
+		var reg:B2ContactRegister = m_registers[type1][type2];
 		
 		if (true)
 		{
