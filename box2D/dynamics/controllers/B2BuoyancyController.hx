@@ -92,18 +92,21 @@ class B2BuoyancyController extends B2Controller
 		if(useWorldGravity){
 			gravity = getWorld().getGravity().copy();
 		}
-		for(var i:B2ControllerEdge=m_bodyList;i;i=i.nextBody){
+		var i:B2ControllerEdge = m_bodyList;
+		while (i != null) {
 			var body:B2Body = i.body;
 			if(body.isAwake() == false){
 				//Buoyancy force is just a function of position,
 				//so unlike most forces, it is safe to ignore sleeping bodes
+				i = i.nextBody;
 				continue;
 			}
 			var areac:B2Vec2 = new B2Vec2();
 			var massc:B2Vec2 = new B2Vec2();
 			var area:Float = 0.0;
 			var mass:Float = 0.0;
-			for(var fixture:B2Fixture=body.getFixtureList();fixture;fixture=fixture.getNext()){
+			var fixture:B2Fixture = body.getFixtureList();
+			while (fixture != null){
 				var sc:B2Vec2 = new B2Vec2();
 				var sarea:Float = fixture.getShape().computeSubmergedArea(normal, offset, body.getTransform(), sc);
 				area += sarea;
@@ -119,13 +122,16 @@ class B2BuoyancyController extends B2Controller
 				mass += sarea*shapeDensity;
 				massc.x += sarea * sc.x * shapeDensity;
 				massc.y += sarea * sc.y * shapeDensity;
+				fixture=fixture.getNext();
 			}
 			areac.x/=area;
 			areac.y/=area;
 			massc.x/=mass;
 			massc.y/=mass;
-			if(area<B2Math.MIN_VALUE)
+			if(area<B2Math.MIN_VALUE){
+				i = i.nextBody;
 				continue;
+			}
 			//Buoyancy
 			var buoyancyForce:B2Vec2 = gravity.getNegative();
 			buoyancyForce.multiply(density*area)
@@ -138,7 +144,7 @@ class B2BuoyancyController extends B2Controller
 			//Angular drag
 			//TODO: Something that makes more physical sense?
 			body.applyTorque(-body.getInertia()/body.getMass()*area*body.getAngularVelocity()*angularDrag)
-			
+			i = i.nextBody;
 		}
 	}
 	
