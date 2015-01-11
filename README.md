@@ -7,6 +7,8 @@ The Box2D rigid-body 2D physics engine, ported to Haxe from the Box2DFlash port 
 
 The syntax has been updated to follow the standard Haxe convention, for example:
 
+**ActionScript**
+
     var world:b2World = new b2World (new b2Vec2 (0, 10.0), true);
     var worldScale:int = 30;
     
@@ -22,6 +24,8 @@ The syntax has been updated to follow the standard Haxe convention, for example:
   	player.CreateFixture (fixture);
 
 The above ActionScript code would be written like this in Haxe:
+
+**Haxe**
 
     var world = new B2World (new B2Vec2 (0, 10.0), true);
     var worldScale = 30;
