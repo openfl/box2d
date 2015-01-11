@@ -33,8 +33,8 @@ class B2SimplexCache
 	}
 	
 	/** Length or area */	
-	public var metric:Float;		
-	public var count:Int;
+	public var metric:Float = 0;		
+	public var count:Int = 0;
 	/** Vertices on shape a */	
 	public var indexA:Array <Int>;	
 	/** Vertices on shape b */	

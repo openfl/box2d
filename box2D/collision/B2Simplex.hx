@@ -371,5 +371,5 @@ public var m_v1:B2SimplexVertex;
 public var m_v2:B2SimplexVertex;
 public var m_v3:B2SimplexVertex;
 public var m_vertices:Array <B2SimplexVertex>;
-public var m_count:Int;
+public var m_count:Int = 0;
 }

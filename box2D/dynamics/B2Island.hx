@@ -490,12 +490,12 @@ class B2Island
 	public var m_contacts:Array <B2Contact>;
 	public var m_joints:Array <B2Joint>;
 
-	public var m_bodyCount:Int;
-	public var m_jointCount:Int;
-	public var m_contactCount:Int;
+	public var m_bodyCount:Int = 0;
+	public var m_jointCount:Int = 0;
+	public var m_contactCount:Int = 0;
 
-	private var m_bodyCapacity:Int;
-	public var m_contactCapacity:Int;
-	public var m_jointCapacity:Int;
+	private var m_bodyCapacity:Int = 0;
+	public var m_contactCapacity:Int = 0;
+	public var m_jointCapacity:Int = 0;
 	
 }

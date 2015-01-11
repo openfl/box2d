@@ -747,7 +747,7 @@ class B2PolygonShape extends B2Shape
 	public var m_vertices:Array <B2Vec2>;
 	public var m_normals:Array <B2Vec2>;
 	
-	public var m_vertexCount:Int;
+	public var m_vertexCount:Int = 0;
 	
 	
 	

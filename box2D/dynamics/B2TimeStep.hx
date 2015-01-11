@@ -33,10 +33,10 @@ class B2TimeStep
 		velocityIterations = step.velocityIterations;
 		warmStarting = step.warmStarting;
 	}
-	public var dt:Float;			// time step
-	public var inv_dt:Float;		// inverse time step (0 if dt == 0).
-	public var dtRatio:Float;		// dt * inv_dt0
-	public var velocityIterations:Int;
-	public var positionIterations:Int;
+	public var dt:Float = 0;			// time step
+	public var inv_dt:Float = 0;		// inverse time step (0 if dt == 0).
+	public var dtRatio:Float = 0;		// dt * inv_dt0
+	public var velocityIterations:Int = 0;
+	public var positionIterations:Int = 0;
 	public var warmStarting:Bool;
 }

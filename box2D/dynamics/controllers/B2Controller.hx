@@ -101,7 +101,7 @@ class B2Controller
 	public var m_prev:B2Controller;
 	
 	public var m_bodyList:B2ControllerEdge;
-	public var m_bodyCount:Int;
+	public var m_bodyCount:Int = 0;
 	
 	public var m_world:B2World;
 }

@@ -38,7 +38,7 @@ class B2SimplexVertex
 	public var wA:B2Vec2;		// support point in proxyA
 	public var wB:B2Vec2;		// support point in proxyB
 	public var w:B2Vec2;		// wB - wA
-	public var a:Float;		// barycentric coordinate for closest point
-	public var indexA:Int;	// wA index
-	public var indexB:Int;	// wB index
+	public var a:Float = 0;		// barycentric coordinate for closest point
+	public var indexA:Int = 0;	// wA index
+	public var indexB:Int = 0;	// wB index
 }

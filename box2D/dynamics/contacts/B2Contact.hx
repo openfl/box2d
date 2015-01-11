@@ -359,7 +359,7 @@ class B2Contact
 		return B2TimeOfImpact.timeOfImpact(s_input);
 	}
 	
-	public var m_flags:Int;
+	public var m_flags:Int = 0;
 
 	// World pool and list pointers.
 	public var m_prev:B2Contact;
@@ -375,5 +375,5 @@ class B2Contact
 	public var m_manifold:B2Manifold;
 	public var m_oldManifold:B2Manifold;
 	
-	public var m_toi:Float;
+	public var m_toi:Float = 0;
 }

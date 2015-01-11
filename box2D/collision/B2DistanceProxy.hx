@@ -125,6 +125,6 @@ class B2DistanceProxy
 	}
 	
 	public var m_vertices:Array <B2Vec2>;
-	public var m_count:Int;
-	public var m_radius:Float;
+	public var m_count:Int = 0;
+	public var m_radius:Float = 0;
 }

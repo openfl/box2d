@@ -52,9 +52,9 @@ class B2ContactConstraint
 	public var bodyA:B2Body;
 	public var bodyB:B2Body;
 	public var type:B2ManifoldType;//b2Manifold::Type
-	public var radius:Float;
-	public var friction:Float;
-	public var restitution:Float;
-	public var pointCount:Int;
+	public var radius:Float = 0;
+	public var friction:Float = 0;
+	public var restitution:Float = 0;
+	public var pointCount:Int = 0;
 	public var manifold:B2Manifold;
 }

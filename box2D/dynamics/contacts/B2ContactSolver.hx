@@ -929,5 +929,5 @@ class B2ContactSolver
 	private var m_step:B2TimeStep;
 	private var m_allocator:Dynamic;
 	public var m_constraints:Array <B2ContactConstraint>;
-	private var m_constraintCount:Int;
+	private var m_constraintCount:Int = 0;
 }
