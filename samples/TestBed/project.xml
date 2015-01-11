@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	
+	<meta title="TestBed" package="org.openfl.box2d.testbed" version="1.0.0" company="OpenFL" />
+	<app main="Main" path="Export" file="TestBed" />
+	
+	<window width="640" height="360" unless="mobile" />
+	
+	<source path="Source" />
+	
+	<haxelib name="openfl" />
+	<haxelib name="box2d" />
+	
+	<assets path="Assets" rename="assets" exclude="openfl.svg" />
+	<icon path="Assets/openfl.svg" />
+	
+</project>
