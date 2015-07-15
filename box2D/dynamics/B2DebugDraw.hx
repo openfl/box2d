@@ -22,7 +22,10 @@ package box2D.dynamics;
 import box2D.common.math.B2Transform;
 import box2D.common.math.B2Vec2;
 import box2D.common.B2Color;
+
+#if (openfl || flash || nme)
 import flash.display.Sprite;
+#end
 
 
 /**
@@ -91,6 +94,7 @@ class B2DebugDraw
 		m_drawFlags &= ~flags;
 	}
 
+	#if (openfl || flash || nme)
 	/**
 	* Set the sprite
 	*/
@@ -104,6 +108,7 @@ class B2DebugDraw
 	public function getSprite() : Sprite {
 		return m_sprite;
 	}
+	#end
 	
 	/**
 	* Set the draw scale
@@ -180,12 +185,14 @@ class B2DebugDraw
 	*/
 	public function drawPolygon(vertices:Array <B2Vec2>, vertexCount:Int, color:B2Color) : Void{
 		
+		#if (openfl || flash || nme)
 		m_sprite.graphics.lineStyle(m_lineThickness, color.color, m_alpha);
 		m_sprite.graphics.moveTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
 		for (i in 1...vertexCount){
 				m_sprite.graphics.lineTo(vertices[i].x * m_drawScale, vertices[i].y * m_drawScale);
 		}
 		m_sprite.graphics.lineTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
+		#end
 		
 	}
 
@@ -194,6 +201,7 @@ class B2DebugDraw
 	*/
 	public function drawSolidPolygon(vertices:Array <B2Vec2>, vertexCount:Int, color:B2Color) : Void{
 		
+		#if (openfl || flash || nme)
 		m_sprite.graphics.lineStyle(m_lineThickness, color.color, m_alpha);
 		m_sprite.graphics.moveTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
 		m_sprite.graphics.beginFill(color.color, m_fillAlpha);
@@ -202,6 +210,7 @@ class B2DebugDraw
 		}
 		m_sprite.graphics.lineTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
 		m_sprite.graphics.endFill();
+		#end
 		
 	}
 
@@ -210,8 +219,10 @@ class B2DebugDraw
 	*/
 	public function drawCircle(center:B2Vec2, radius:Float, color:B2Color) : Void{
 		
+		#if (openfl || flash || nme)
 		m_sprite.graphics.lineStyle(m_lineThickness, color.color, m_alpha);
 		m_sprite.graphics.drawCircle(center.x * m_drawScale, center.y * m_drawScale, radius * m_drawScale);
+		#end
 		
 	}
 	
@@ -220,13 +231,15 @@ class B2DebugDraw
 	*/
 	public function drawSolidCircle(center:B2Vec2, radius:Float, axis:B2Vec2, color:B2Color) : Void{
 		
+		#if (openfl || flash || nme)
 		m_sprite.graphics.lineStyle(m_lineThickness, color.color, m_alpha);
 		m_sprite.graphics.moveTo(0,0);
 		m_sprite.graphics.beginFill(color.color, m_fillAlpha);
 		m_sprite.graphics.drawCircle(center.x * m_drawScale, center.y * m_drawScale, radius * m_drawScale);
 		m_sprite.graphics.endFill();
 		m_sprite.graphics.moveTo(center.x * m_drawScale, center.y * m_drawScale);
-		m_sprite.graphics.lineTo((center.x + axis.x*radius) * m_drawScale, (center.y + axis.y*radius) * m_drawScale);
+		m_sprite.graphics.lineTo((center.x + axis.x * radius) * m_drawScale, (center.y + axis.y * radius) * m_drawScale);
+		#end
 		
 	}
 
@@ -236,9 +249,11 @@ class B2DebugDraw
 	*/
 	public function drawSegment(p1:B2Vec2, p2:B2Vec2, color:B2Color) : Void{
 		
+		#if (openfl || flash || nme)
 		m_sprite.graphics.lineStyle(m_lineThickness, color.color, m_alpha);
 		m_sprite.graphics.moveTo(p1.x * m_drawScale, p1.y * m_drawScale);
 		m_sprite.graphics.lineTo(p2.x * m_drawScale, p2.y * m_drawScale);
+		#end
 		
 	}
 
@@ -248,20 +263,24 @@ class B2DebugDraw
 	*/
 	public function drawTransform(xf:B2Transform) : Void{
 		
+		#if (openfl || flash || nme)
 		m_sprite.graphics.lineStyle(m_lineThickness, 0xff0000, m_alpha);
 		m_sprite.graphics.moveTo(xf.position.x * m_drawScale, xf.position.y * m_drawScale);
 		m_sprite.graphics.lineTo((xf.position.x + m_xformScale*xf.R.col1.x) * m_drawScale, (xf.position.y + m_xformScale*xf.R.col1.y) * m_drawScale);
 		
 		m_sprite.graphics.lineStyle(m_lineThickness, 0x00ff00, m_alpha);
 		m_sprite.graphics.moveTo(xf.position.x * m_drawScale, xf.position.y * m_drawScale);
-		m_sprite.graphics.lineTo((xf.position.x + m_xformScale*xf.R.col2.x) * m_drawScale, (xf.position.y + m_xformScale*xf.R.col2.y) * m_drawScale);
+		m_sprite.graphics.lineTo((xf.position.x + m_xformScale * xf.R.col2.x) * m_drawScale, (xf.position.y + m_xformScale * xf.R.col2.y) * m_drawScale);
+		#end
 		
 	}
 	
 	
 	
 	private var m_drawFlags:Int;
+	#if (openfl || flash || nme)
 	public var m_sprite:Sprite;
+	#end
 	private var m_drawScale:Float;
 	
 	private var m_lineThickness:Float;
