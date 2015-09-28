@@ -26,7 +26,7 @@ class B2Mat22
 {
 	public function new ()
 	{
-		col1 = new B2Vec2(0, 1.0);
+		col1 = new B2Vec2(1.0, 0);
 		col2 = new B2Vec2(0, 1.0);
 	}
 	
