@@ -89,11 +89,13 @@ class TestRaycast extends Test{
 				f.rayCast(output, input);
 				lambda = output.fraction;
 			}
+
+			/*
 			m_sprite.graphics.lineStyle(1,0xff0000,1);
 			m_sprite.graphics.moveTo(p1.x * m_physScale, p1.y * m_physScale);
 			m_sprite.graphics.lineTo( 	(p2.x * lambda + (1 - lambda) * p1.x) * m_physScale,
 										(p2.y * lambda + (1 - lambda) * p1.y) * m_physScale);
-
+			*/
 		}
 	}
 	

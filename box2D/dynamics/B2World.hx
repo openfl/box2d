@@ -647,9 +647,7 @@ class B2World
 			return;
 		}
 		
-		#if (openfl || flash || nme)
-		m_debugDraw.m_sprite.graphics.clear();
-		#end
+		m_debugDraw.clear();
 		
 		var flags:Int = m_debugDraw.getFlags();
 		

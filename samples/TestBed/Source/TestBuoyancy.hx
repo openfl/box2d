@@ -210,6 +210,8 @@ import box2D.common.math.*;
 		public override function Update():Void{
 			
 			super.Update();
+
+			/*
 			//Draw water line
 			m_sprite.graphics.lineStyle(1,0x0000ff,1);
 			m_sprite.graphics.moveTo(5,200);
@@ -222,6 +224,7 @@ import box2D.common.math.*;
 			m_sprite.graphics.lineTo(635,355);
 			m_sprite.graphics.lineTo(5,355);
 			m_sprite.graphics.endFill();
+			*/
 
 		}
 	}

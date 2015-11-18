@@ -66,6 +66,12 @@ class B2DebugDraw
 	static public var e_controllerBit:Int		= 0x0020;
 	//};
 
+	public function clear() {
+		#if (openfl || flash || nme)
+			m_sprite.graphics.clear();
+		#end
+	}
+
 	/**
 	* Set the drawing flags.
 	*/
