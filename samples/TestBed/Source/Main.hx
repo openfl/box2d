@@ -4,6 +4,9 @@ import lime.app.Application;
 import lime.ui.KeyCode;
 #if (openfl || flash || nme)
 	import box2D.dynamics.B2FlashDebugDraw;
+#elseif lime_cairo
+	import box2D.dynamics.B2CairoDebugDraw;
+	import CairoGLStack;
 #end
 
 /**
@@ -18,6 +21,7 @@ class Main extends Application
 	var tests:Array<Test> = [];
 	var testNames:Array<String> = [];
 	var currentIndex:Int = 0;
+	#if lime_cairo var cairoGL:CairoGLStack; #end
 
 	override public function onPreloadComplete() {
         super.onPreloadComplete();
@@ -25,6 +29,12 @@ class Main extends Application
 		#if (openfl || flash || nme) 
 			var debugDraw = new B2FlashDebugDraw();
 			debugDraw.setSprite(flash.Lib.current); 
+			Global.debugDraw = debugDraw;
+		#elseif lime_cairo
+			cairoGL = new CairoGLStack();
+			cairoGL.setSize(window.width, window.height);
+			var debugDraw = new B2CairoDebugDraw();
+			debugDraw.setCairo(cairoGL.cairo); 
 			Global.debugDraw = debugDraw;
 		#end
 
@@ -48,6 +58,8 @@ class Main extends Application
 
 	override public function update(_) if (test != null) test.Update();
 
+	#if lime_cairo override public function render(_) cairoGL.render(); #end
+	
 	override public function onKeyUp(_, code, _) {
 		Global.keysDown[code] = false;
 

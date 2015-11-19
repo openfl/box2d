@@ -4,7 +4,7 @@
 	<meta title="TestBed" package="org.openfl.box2d.testbed" version="1.0.0" company="OpenFL" />
 	<app main="Main" path="Export" file="TestBed" />
 	
-	<window width="640" height="360" unless="mobile" />
+	<window width="640" height="360" resizable="false" unless="mobile" />
 	
 	<source path="Source" />
 	
