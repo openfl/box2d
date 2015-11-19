@@ -25,6 +25,7 @@ import box2D.common.B2Color;
 
 #if lime_cairo
 import lime.graphics.cairo.Cairo;
+import lime.graphics.cairo.CairoOperator;
 #end
 
 
@@ -52,7 +53,7 @@ class B2CairoDebugDraw implements IDebugDraw
 		#if lime_cairo
 		m_cairo.save();
 		m_cairo.setSourceRGBA(1, 1, 1, 1);
-		m_cairo.operator = lime.graphics.cairo.CairoOperator.SOURCE;
+		m_cairo.operator = CairoOperator.SOURCE;
 		m_cairo.paint();
 		m_cairo.restore();
 		#end
@@ -200,10 +201,8 @@ class B2CairoDebugDraw implements IDebugDraw
 				m_cairo.lineTo(vertices[i].x * m_drawScale, vertices[i].y * m_drawScale);
 		}
 		m_cairo.lineTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
-		m_cairo.save();
 		style(m_lineThickness, color.color, m_fillAlpha);
-		m_cairo.fill();
-		m_cairo.restore();
+		m_cairo.fillPreserve();
 		style(m_lineThickness, color.color, m_alpha);
 		m_cairo.stroke();
 		#end
@@ -231,10 +230,8 @@ class B2CairoDebugDraw implements IDebugDraw
 		#if lime_cairo
 		m_cairo.moveTo(0,0);
 		constructCircle(center.x * m_drawScale, center.y * m_drawScale, radius * m_drawScale);
-		m_cairo.save();
 		style(m_lineThickness, color.color, m_fillAlpha);
-		m_cairo.fill();
-		m_cairo.restore();
+		m_cairo.fillPreserve();
 		style(m_lineThickness, color.color, m_alpha);
 		m_cairo.stroke();
 		m_cairo.moveTo(center.x * m_drawScale, center.y * m_drawScale);
