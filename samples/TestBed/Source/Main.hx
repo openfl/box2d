@@ -56,7 +56,13 @@ class Main extends Application
 		test = tests[currentIndex];
 	}
 
-	override public function update(_) if (test != null) test.Update();
+	override public function update(milliseconds) {
+		if (test != null) {
+			var delta = milliseconds / 1000;
+			delta = 1 / frameRate; // forces time step to be uniform; optional of course
+			test.Update(delta);
+		}
+	}
 
 	#if lime_cairo override public function render(_) cairoGL.render(); #end
 	

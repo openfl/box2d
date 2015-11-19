@@ -74,8 +74,8 @@ class TestRaycast extends Test{
 		// Member Data 
 		//======================
 		
-		public override function Update():Void{
-			super.Update();
+		public override function Update(_):Void{
+			super.Update(_);
 			
 			var p1:B2Vec2 = laser.getWorldPoint(new B2Vec2(30.1 / m_physScale, 0));
 			var p2:B2Vec2 = laser.getWorldPoint(new B2Vec2(130.1 / m_physScale, 0));

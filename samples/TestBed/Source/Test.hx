@@ -82,14 +82,14 @@ class Test {
 		}
 		
 		
-		public function Update():Void {
+		public function Update(delta:Float):Void {
 			// Update mouse joint
 			UpdateMouseWorld();
 			MouseDestroy();
 			MouseDrag();
 			
 			// Update physics
-			m_world.step(m_timeStep, m_velocityIterations, m_positionIterations);
+			m_world.step(delta, m_velocityIterations, m_positionIterations);
 			m_world.clearForces();
 			
 			// Render
@@ -119,7 +119,6 @@ class Test {
 		public var m_mouseJoint:B2MouseJoint;
 		public var m_velocityIterations:Int = 10;
 		public var m_positionIterations:Int = 10;
-		public var m_timeStep:Float = 1.0/30.0;
 // 		public var m_physScale:Float = 30;
 		// world mouse position
 		static public var mouseXWorldPhys:Float;

@@ -207,9 +207,9 @@ import box2D.common.math.*;
 		// Member Data 
 		//======================
 		
-		public override function Update():Void{
+		public override function Update(_):Void{
 			
-			super.Update();
+			super.Update(_);
 
 			/*
 			//Draw water line

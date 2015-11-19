@@ -213,7 +213,7 @@ class TestTheoJansen extends Test {
 	
 	
 	
-	public override function Update():Void{
+	public override function Update(_):Void{
 		
 		if (Global.keysDown[KeyCode.A]){
 			m_chassis.setAwake(true);
@@ -233,7 +233,7 @@ class TestTheoJansen extends Test {
 		}
 		
 		// Finally update super class
-		super.Update();
+		super.Update(_);
 	}
 	
 	

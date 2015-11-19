@@ -71,9 +71,9 @@ class TestBreakable extends Test{
 			});
 		}
 		
-		override public function Update():Void 
+		override public function Update(_):Void 
 		{
-			super.Update();
+			super.Update(_);
 			if (m_break)
 			{
 				Break();
