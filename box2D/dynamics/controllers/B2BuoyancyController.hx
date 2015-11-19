@@ -23,7 +23,7 @@ import box2D.common.B2Color;
 import box2D.common.math.B2Math;
 import box2D.common.math.B2Vec2;
 import box2D.dynamics.B2Body;
-import box2D.dynamics.B2DebugDraw;
+import box2D.dynamics.IDebugDraw;
 import box2D.dynamics.B2Fixture;
 import box2D.dynamics.B2TimeStep;
 
@@ -148,7 +148,7 @@ class B2BuoyancyController extends B2Controller
 		}
 	}
 	
-	public override function draw(debugDraw:B2DebugDraw):Void
+	public override function draw(debugDraw:IDebugDraw):Void
 	{
 		var r:Float = 1000;
 		//Would like to draw a semi-transparent box

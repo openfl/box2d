@@ -48,12 +48,12 @@ class Test {
 			//m_world.setBroadPhase(new B2BroadPhase(worldAABB));
 			m_world.setWarmStarting(true);
 			// set debug draw
-			var dbgDraw:B2DebugDraw = Global.debugDraw;
+			var dbgDraw:IDebugDraw = Global.debugDraw;
 			// dbgDraw.setSprite(m_sprite);
 			dbgDraw.setDrawScale(30.0);
 			dbgDraw.setFillAlpha(0.3);
 			dbgDraw.setLineThickness(1.0);
-			dbgDraw.setFlags(B2DebugDraw.e_shapeBit | B2DebugDraw.e_jointBit);
+			dbgDraw.setFlags(B2DebugDrawFlag.Shapes | B2DebugDrawFlag.Joints);
 			m_world.setDebugDraw(dbgDraw);
 			
 			// Create border of boxes

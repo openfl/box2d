@@ -2,7 +2,9 @@ package ;
 
 import lime.app.Application;
 import lime.ui.KeyCode;
-import box2D.dynamics.B2DebugDraw;
+#if (openfl || flash || nme)
+	import box2D.dynamics.B2FlashDebugDraw;
+#end
 
 /**
  * ...
@@ -20,8 +22,11 @@ class Main extends Application
 	override public function onPreloadComplete() {
         super.onPreloadComplete();
 
-		Global.debugDraw = new B2DebugDraw();
-		#if (openfl || flash || nme) Global.debugDraw.setSprite(flash.Lib.current); #end
+		#if (openfl || flash || nme) 
+			var debugDraw = new B2FlashDebugDraw();
+			debugDraw.setSprite(flash.Lib.current); 
+			Global.debugDraw = debugDraw;
+		#end
 
 		trace("PRESS SPACEBAR FOR NEXT TEST");
 		trace("CLICK & PRESS 'D' TO DELETE OBJECTS");
@@ -42,7 +47,7 @@ class Main extends Application
 	}
 
 	override public function update(_) if (test != null) test.Update();
-	
+
 	override public function onKeyUp(_, code, _) {
 		Global.keysDown[code] = false;
 

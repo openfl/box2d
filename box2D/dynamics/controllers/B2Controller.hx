@@ -20,7 +20,7 @@ package box2D.dynamics.controllers;
 
 
 import box2D.dynamics.B2Body;
-import box2D.dynamics.B2DebugDraw;
+import box2D.dynamics.IDebugDraw;
 import box2D.dynamics.B2TimeStep;
 import box2D.dynamics.B2World;
 
@@ -33,7 +33,7 @@ class B2Controller
 {
 	public function step(step:B2TimeStep):Void {}
 		
-	public function draw(debugDraw:B2DebugDraw):Void { }
+	public function draw(debugDraw:IDebugDraw):Void { }
 	
 	public function addBody(body:B2Body) : Void 
 	{

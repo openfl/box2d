@@ -32,7 +32,7 @@ import flash.display.Sprite;
 * Implement and register this class with a b2World to provide debug drawing of physics
 * entities in your game.
 */
-class B2DebugDraw
+class B2FlashDebugDraw implements IDebugDraw
 {
 
 	public function new () {
@@ -47,24 +47,6 @@ class B2DebugDraw
 		
 		m_drawFlags = 0;
 	}
-
-	//virtual ~b2DebugDraw() {}
-
-	//enum
-	//{
-	/** Draw shapes */
-	static public var e_shapeBit:Int 			= 0x0001;
-	/** Draw joint connections */
-	static public var e_jointBit:Int			= 0x0002;
-	/** Draw axis aligned bounding boxes */
-	static public var e_aabbBit:Int			= 0x0004;
-	/** Draw broad-phase pairs */
-	static public var e_pairBit:Int			= 0x0008;
-	/** Draw center of mass frame */
-	static public var e_centerOfMassBit:Int	= 0x0010;
-	/** Draw controllers */
-	static public var e_controllerBit:Int		= 0x0020;
-	//};
 
 	public function clear() {
 		#if (openfl || flash || nme)

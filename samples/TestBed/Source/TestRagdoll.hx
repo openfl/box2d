@@ -24,9 +24,6 @@
 	import box2D.common.*;
 	import box2D.common.math.*;
 	
-import flash.display.Sprite;
-	
-	
 	class TestRagdoll extends Test{
 		
 		

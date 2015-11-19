@@ -125,7 +125,7 @@ class B2World
 	* inside the b2World::Step method, so make sure your renderer is ready to
 	* consume draw commands when you call Step().
 	*/
-	public function setDebugDraw(debugDraw:B2DebugDraw) : Void{
+	public function setDebugDraw(debugDraw:IDebugDraw) : Void{
 		m_debugDraw = debugDraw;
 	}
 	
@@ -668,7 +668,7 @@ class B2World
 		// Store color here and reuse, to reduce allocations
 		var color:B2Color = new B2Color(0, 0, 0);
 			
-		if ((flags & B2DebugDraw.e_shapeBit) != 0)
+		if ((flags & B2DebugDrawFlag.Shapes) != 0)
 		{
 			b = m_bodyList;
 			while (b != null)
@@ -709,7 +709,7 @@ class B2World
 			}
 		}
 		
-		if ((flags & B2DebugDraw.e_jointBit) != 0)
+		if ((flags & B2DebugDrawFlag.Joints) != 0)
 		{
 			j = m_jointList;
 			while (j != null)
@@ -719,7 +719,7 @@ class B2World
 			}
 		}
 		
-		if ((flags & B2DebugDraw.e_controllerBit) != 0)
+		if ((flags & B2DebugDrawFlag.Controllers) != 0)
 		{
 			var c:B2Controller = m_controllerList;
 			while (c != null)
@@ -729,7 +729,7 @@ class B2World
 			}
 		}
 		
-		if ((flags & B2DebugDraw.e_pairBit) != 0)
+		if ((flags & B2DebugDrawFlag.Pairs) != 0)
 		{
 			color.set(0.3, 0.9, 0.9);
 			var contact:B2Contact = m_contactManager.m_contactList;
@@ -746,7 +746,7 @@ class B2World
 			}
 		}
 		
-		if ((flags & B2DebugDraw.e_aabbBit) != 0)
+		if ((flags & B2DebugDrawFlag.AABBs) != 0)
 		{
 			bp = m_contactManager.m_broadPhase;
 			
@@ -776,7 +776,7 @@ class B2World
 			}
 		}
 		
-		if ((flags & B2DebugDraw.e_centerOfMassBit) != 0)
+		if ((flags & B2DebugDrawFlag.CentersOfMass) != 0)
 		{
 			b = m_bodyList;
 			while (b != null)
@@ -1665,7 +1665,7 @@ class B2World
 	public var m_groundBody:B2Body;
 
 	private var m_destructionListener:B2DestructionListener;
-	private var m_debugDraw:B2DebugDraw;
+	private var m_debugDraw:IDebugDraw;
 
 	// This is used to compute the time step ratio to support a variable time step.
 	private var m_inv_dt0:Float;
