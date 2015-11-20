@@ -90,12 +90,12 @@ class TestRaycast extends Test{
 				lambda = output.fraction;
 			}
 
-			/*
-			m_sprite.graphics.lineStyle(1,0xff0000,1);
-			m_sprite.graphics.moveTo(p1.x * m_physScale, p1.y * m_physScale);
-			m_sprite.graphics.lineTo( 	(p2.x * lambda + (1 - lambda) * p1.x) * m_physScale,
-										(p2.y * lambda + (1 - lambda) * p1.y) * m_physScale);
-			*/
+			var p3 = new B2Vec2(
+				(p2.x * lambda + (1 - lambda) * p1.x),
+				(p2.y * lambda + (1 - lambda) * p1.y)
+			);
+
+			m_debugDraw.drawSegment(p1, p3, new B2Color(1, 0, 0));
 		}
 	}
 	

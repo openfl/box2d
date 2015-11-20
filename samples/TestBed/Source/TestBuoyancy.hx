@@ -208,22 +208,17 @@ import box2D.common.math.*;
 		//======================
 		
 		public override function Update(_):Void{
-			
 			super.Update(_);
-
 			//Draw water line
-			m_debugDraw.drawSegment(new B2Vec2(0, 0), new B2Vec2(2, 2), new B2Color(0, 0, 1));
-			/*
-			//It's not water without transparency...
-			m_sprite.graphics.lineStyle();
-			m_sprite.graphics.beginFill(0x0000ff,0.2);
-			m_sprite.graphics.moveTo(5,200);
-			m_sprite.graphics.lineTo(635,200);
-			m_sprite.graphics.lineTo(635,355);
-			m_sprite.graphics.lineTo(5,355);
-			m_sprite.graphics.endFill();
-			*/
-
+			var lastAlpha = m_debugDraw.getFillAlpha();
+			m_debugDraw.setFillAlpha(0.1);
+			m_debugDraw.drawSolidPolygon([
+				new B2Vec2(0 / m_physScale, 200 / m_physScale),
+				new B2Vec2(640 / m_physScale, 200 / m_physScale),
+				new B2Vec2(640 / m_physScale, 400 / m_physScale),
+				new B2Vec2(0 / m_physScale, 400 / m_physScale),
+			], 4, new B2Color(0, 1, 1));
+			m_debugDraw.setFillAlpha(lastAlpha);
 		}
 	}
 	
