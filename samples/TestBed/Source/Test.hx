@@ -29,8 +29,6 @@
 class Test {
 		
 	 
-		var m_physScale = 30;
-	 	
 		public function new(){
 			
 			var worldAABB:B2AABB = new B2AABB();
@@ -47,14 +45,6 @@ class Test {
 			m_world = new B2World(gravity, doSleep);
 			//m_world.setBroadPhase(new B2BroadPhase(worldAABB));
 			m_world.setWarmStarting(true);
-			// set debug draw
-			var dbgDraw:IDebugDraw = Global.debugDraw;
-			// dbgDraw.setSprite(m_sprite);
-			dbgDraw.setDrawScale(30.0);
-			dbgDraw.setFillAlpha(0.3);
-			dbgDraw.setLineThickness(1.0);
-			dbgDraw.setFlags(B2DebugDrawFlag.Shapes | B2DebugDrawFlag.Joints);
-			m_world.setDebugDraw(dbgDraw);
 			
 			// Create border of boxes
 			var wall:B2PolygonShape= new B2PolygonShape();
@@ -111,32 +101,16 @@ class Test {
 		}
 		
 		
-		//======================
-		// Member Data 
-		//======================
-		public var m_world:B2World;
-		public var m_bomb:B2Body;
-		public var m_mouseJoint:B2MouseJoint;
-		public var m_velocityIterations:Int = 10;
-		public var m_positionIterations:Int = 10;
-// 		public var m_physScale:Float = 30;
-		// world mouse position
-		static public var mouseXWorldPhys:Float;
-		static public var mouseYWorldPhys:Float;
-		static public var mouseXWorld:Float;
-		static public var mouseYWorld:Float;
-		
-		
 		
 		//======================
 		// Update mouseWorld
 		//======================
 		public function UpdateMouseWorld():Void{
-			mouseXWorldPhys = (Global.mouseX)/m_physScale; 
-			mouseYWorldPhys = (Global.mouseY)/m_physScale; 
+			mouseXWorldPhys = (m_inputState.mouseX)/m_physScale; 
+			mouseYWorldPhys = (m_inputState.mouseY)/m_physScale; 
 			
-			mouseXWorld = (Global.mouseX); 
-			mouseYWorld = (Global.mouseY); 
+			mouseXWorld = (m_inputState.mouseX); 
+			mouseYWorld = (m_inputState.mouseY); 
 		}
 		
 		
@@ -146,7 +120,7 @@ class Test {
 		//======================
 		public function MouseDrag():Void{
 			// mouse press
-			if (Global.mouseDown && m_mouseJoint==null){
+			if (m_inputState.mouseDown && m_mouseJoint==null){
 				
 				var body:B2Body = GetBodyAtMouse();
 				
@@ -165,7 +139,7 @@ class Test {
 			
 			
 			// mouse release
-			if (!Global.mouseDown){
+			if (!m_inputState.mouseDown){
 				if (m_mouseJoint!=null)
 				{
 					m_world.destroyJoint(m_mouseJoint);
@@ -189,7 +163,7 @@ class Test {
 		//======================
 		public function MouseDestroy():Void{
 			// mouse press
-			if (!Global.mouseDown && Global.keysDown[KeyCode.D]){
+			if (!m_inputState.mouseDown && m_inputState.keysDown[KeyCode.D]){
 				
 				var body:B2Body = GetBodyAtMouse(true);
 				
@@ -234,4 +208,28 @@ class Test {
 			m_world.queryAABB(GetBodyCallback, aabb);
 			return body;
 		}
+
+		public function SetDebugDraw(debugDraw:IDebugDraw) {
+			m_debugDraw = debugDraw;
+			m_world.setDebugDraw(m_debugDraw);
+		}
+		
+		
+		//======================
+		// Member Data 
+		//======================
+		public var m_world:B2World;
+		public var m_bomb:B2Body;
+		public var m_mouseJoint:B2MouseJoint;
+		public var m_velocityIterations:Int = 10;
+		public var m_positionIterations:Int = 10;
+		public var m_physScale:Int = 30;
+		public var m_inputState:InputState;
+		public var m_debugDraw:IDebugDraw;
+		public var m_name:String;
+		// world mouse position
+		static public var mouseXWorldPhys:Float;
+		static public var mouseYWorldPhys:Float;
+		static public var mouseXWorld:Float;
+		static public var mouseYWorld:Float;
 	}

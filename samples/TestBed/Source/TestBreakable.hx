@@ -34,7 +34,7 @@ class TestBreakable extends Test{
 		public function new(){
 			super();
 			// Set Text field
-// 			Global.caption.text = "Breakable";
+// 			m_globalState.caption.text = "Breakable";
 			
 			m_world.setContactListener(new ContactListenerBreakable(this));
 			

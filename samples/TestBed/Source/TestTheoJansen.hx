@@ -215,19 +215,19 @@ class TestTheoJansen extends Test {
 	
 	public override function Update(_):Void{
 		
-		if (Global.keysDown[KeyCode.A]){
+		if (m_inputState.keysDown[KeyCode.A]){
 			m_chassis.setAwake(true);
 			m_motorJoint.setMotorSpeed(-m_motorSpeed);
 		}
-		if (Global.keysDown[KeyCode.S]){
+		if (m_inputState.keysDown[KeyCode.S]){
 			m_chassis.setAwake(true);
 			m_motorJoint.setMotorSpeed(0.0);
 		}
-		if (Global.keysDown[KeyCode.D]){
+		if (m_inputState.keysDown[KeyCode.D]){
 			m_chassis.setAwake(true);
 			m_motorJoint.setMotorSpeed(m_motorSpeed);
 		}
-		if (Global.keysDown[KeyCode.M]){
+		if (m_inputState.keysDown[KeyCode.M]){
 			m_chassis.setAwake(true);
 			m_motorJoint.enableMotor(!m_motorJoint.isMotorEnabled());
 		}
