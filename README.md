@@ -9,38 +9,41 @@ The syntax has been updated to follow the standard Haxe convention, for example:
 
 **ActionScript**
 
-    var world:b2World = new b2World (new b2Vec2 (0, 10.0), true);
-    var worldScale:int = 30;
+```as3
+var world:b2World = new b2World (new b2Vec2 (0, 10.0), true);
+var worldScale:int = 30;
     
-    var body:b2BodyDef = new b2BodyDef ();
-  	body.position.Set (250 / worldScale, 200 / worldScale);
-  	body.type = b2Body.b2_dynamicBody;
+var body:b2BodyDef = new b2BodyDef ();
+body.position.Set (250 / worldScale, 200 / worldScale);
+body.type = b2Body.b2_dynamicBody;
   	
-  	var circle:b2CircleShape = new b2CircleShape (10 / worldScale);
-  	var fixture:b2FixtureDef = new b2FixtureDef ();
-  	fixture.shape = circle;
+var circle:b2CircleShape = new b2CircleShape (10 / worldScale);
+var fixture:b2FixtureDef = new b2FixtureDef ();
+fixture.shape = circle;
   	
-  	player = world.CreateBody (body);
-  	player.CreateFixture (fixture);
+player = world.CreateBody (body);
+player.CreateFixture (fixture);
+```
 
 The above ActionScript code would be written like this in Haxe:
 
 **Haxe**
 
-    var world = new B2World (new B2Vec2 (0, 10.0), true);
-    var worldScale = 30;
+```haxe
+var world = new B2World (new B2Vec2 (0, 10.0), true);
+var worldScale = 30;
     
-    var body = new B2BodyDef ();
-    body.position.set (250 / worldScale, 200 / worldScale);
-    body.type = DYNAMIC_BODY;
+var body = new B2BodyDef ();
+body.position.set (250 / worldScale, 200 / worldScale);
+body.type = DYNAMIC_BODY;
     
-    var circle = new B2CircleShape (10 / worldScale);
-    var fixture = new B2FixtureDef ();
-    fixture.shape = circle;
+var circle = new B2CircleShape (10 / worldScale);
+var fixture = new B2FixtureDef ();
+fixture.shape = circle;
     
-    player = world.createBody (body);
-    player.createFixture (fixture);
-
+player = world.createBody (body);
+player.createFixture (fixture);
+```
 
 Installation
 ============
