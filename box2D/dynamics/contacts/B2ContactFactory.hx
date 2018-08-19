@@ -88,6 +88,15 @@ class B2ContactFactory
 		
 		var reg:B2ContactRegister = m_registers[type1][type2];
 		
+		if (!reg.primary)
+		{
+			reg = m_registers[type2][type1];
+			
+			var tempfixture:B2Fixture = fixtureB;
+			fixtureB = fixtureA;
+			fixtureA = tempfixture;
+		}
+		
 		var c:B2Contact;
 		
 		if (reg.pool != null)
@@ -103,18 +112,9 @@ class B2ContactFactory
 		var createFcn:Dynamic = reg.createFcn;
 		if (createFcn != null)
 		{
-			if (reg.primary)
-			{
-				c = createFcn(m_allocator);
-				c.reset(fixtureA, fixtureB);
-				return c;
-			}
-			else
-			{
-				c = createFcn(m_allocator);
-				c.reset(fixtureB, fixtureA);
-				return c;
-			}
+			c = createFcn(m_allocator);
+			c.reset(fixtureA, fixtureB);
+			return c;
 		}
 		else
 		{
@@ -141,6 +141,7 @@ class B2ContactFactory
 			reg.poolCount++;
 			contact.m_next = reg.pool;
 			reg.pool = contact;
+			contact.reset();
 		}
 		
 		var destroyFcn:Dynamic = reg.destroyFcn;
