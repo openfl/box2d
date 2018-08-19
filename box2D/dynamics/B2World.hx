@@ -73,7 +73,6 @@ class B2World
 		m_controllerList = null;
 		
 		m_bodyCount = 0;
-		m_contactCount = 0;
 		m_jointCount = 0;
 		m_controllerCount = 0;
 		
@@ -539,7 +538,7 @@ class B2World
 	*/
 	public function getContactCount() : Int
 	{
-		return m_contactCount;
+		return m_contactManager.m_contactCount;
 	}
 	
 	/**
@@ -981,7 +980,7 @@ class B2World
 		
 		// Size the island for the worst case.
 		var island:B2Island = m_island;
-		island.initialize(m_bodyCount, m_contactCount, m_jointCount, null, m_contactManager.m_contactListener, m_contactSolver);
+		island.initialize(m_bodyCount, m_contactManager.m_contactCount, m_jointCount, null, m_contactManager.m_contactListener, m_contactSolver);
 		
 		// Clear all the island flags.
 		b = m_bodyList;
@@ -1656,7 +1655,6 @@ class B2World
 	public var m_contactList:B2Contact;
 
 	private var m_bodyCount:Int;
-	public var m_contactCount:Int;
 	private var m_jointCount:Int;
 	private var m_controllerList:B2Controller;
 	private var m_controllerCount:Int;
