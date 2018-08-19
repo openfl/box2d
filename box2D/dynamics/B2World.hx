@@ -283,6 +283,17 @@ class B2World
 			m_bodyList = b.m_next;
 		}
 		
+		b.setUserData(null);
+		b.m_sweep = null;
+		b.m_xf = null;
+		b.m_linearVelocity = null;
+		b.m_force = null;
+		b.m_world = null;
+		b.m_prev = null;
+		b.m_next = null;
+		b.m_controllerList = null;
+		b.m_jointList = null;
+		
 		--m_bodyCount;
 		//b->~b2Body();
 		//m_blockAllocator.Free(b, sizeof(b2Body));
