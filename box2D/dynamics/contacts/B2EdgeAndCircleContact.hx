@@ -22,6 +22,8 @@ package box2D.dynamics.contacts;
 import box2D.collision.B2Manifold;
 import box2D.collision.shapes.B2CircleShape;
 import box2D.collision.shapes.B2EdgeShape;
+import box2D.collision.shapes.B2ShapeType;
+import box2D.common.B2Settings;
 import box2D.common.math.B2Transform;
 import box2D.dynamics.B2Body;
 import box2D.dynamics.B2Fixture;
@@ -42,8 +44,8 @@ class B2EdgeAndCircleContact extends B2Contact
 
 	public override function reset(fixtureA:B2Fixture = null, fixtureB:B2Fixture = null):Void{
 		super.reset(fixtureA, fixtureB);
-		//b2Settings.b2Assert(m_shape1.m_type == B2ShapeType.CIRCLE_SHAPE);
-		//b2Settings.b2Assert(m_shape2.m_type == B2ShapeType.CIRCLE_SHAPE);
+		B2Settings.b2Assert(fixtureA == null || fixtureA.getType() == B2ShapeType.EDGE_SHAPE);
+		B2Settings.b2Assert(fixtureB == null || fixtureA.getType() == B2ShapeType.CIRCLE_SHAPE);
 	}
 	//~b2EdgeAndCircleContact() {}
 	

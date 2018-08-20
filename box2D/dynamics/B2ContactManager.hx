@@ -128,7 +128,7 @@ class B2ContactManager
 		}
 		bodyB.m_contactList = c.m_nodeB;
 		
-		++m_world.m_contactCount;
+		++m_contactCount;
 		return;
 		
 	}

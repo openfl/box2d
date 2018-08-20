@@ -42,8 +42,8 @@ class B2PolyAndCircleContact extends B2Contact{
 
 	public override function reset(fixtureA:B2Fixture = null, fixtureB:B2Fixture = null):Void{
 		super.reset(fixtureA, fixtureB);
-		B2Settings.b2Assert(fixtureA.getType() == B2ShapeType.POLYGON_SHAPE);
-		B2Settings.b2Assert(fixtureB.getType() == B2ShapeType.CIRCLE_SHAPE);
+		B2Settings.b2Assert(fixtureA == null || fixtureA.getType() == B2ShapeType.POLYGON_SHAPE);
+		B2Settings.b2Assert(fixtureB == null || fixtureB.getType() == B2ShapeType.CIRCLE_SHAPE);
 	}
 	//~b2PolyAndCircleContact() {}
 
