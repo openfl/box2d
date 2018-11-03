@@ -274,6 +274,17 @@ class B2DebugDraw
 		#end
 		
 	}
+
+	/**
+	 * Clears debug graphics view.
+	 */
+	public function clear():Void {
+
+		#if (openfl || flash || nme)
+		m_sprite.graphics.clear();
+		#end
+
+	}
 	
 	
 	
