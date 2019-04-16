@@ -156,7 +156,7 @@ class B2Fixture
 	/**
 	 * Set the user data. Use this to store your application specific data.
 	 */
-	public function SetUserData(data:Dynamic):Void
+	public function setUserData(data:Dynamic):Void
 	{
 		m_userData = data;
 	}
