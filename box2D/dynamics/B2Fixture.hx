@@ -103,7 +103,7 @@ class B2Fixture
 	{
 		m_filter = filter.copy();
 		
-		if (m_body != null)
+		if (m_body == null)
 			return;
 			
 		var edge:B2ContactEdge = m_body.getContactList();
