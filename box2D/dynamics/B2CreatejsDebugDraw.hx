@@ -85,16 +85,16 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 	override public function drawSolidPolygon(vertices:Array <B2Vec2>, vertexCount:Int, color:B2Color) : Void{
 		
 		#if createjs
-        // fill polygon
-        m_graphics.moveTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
+		// fill polygon
+		m_graphics.moveTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
 		m_graphics.beginFill(color.getString(m_fillAlpha));
 		for (i in 1...vertexCount){
 				m_graphics.lineTo(vertices[i].x * m_drawScale, vertices[i].y * m_drawScale);
 		}
 		m_graphics.lineTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
 		m_graphics.endFill();
-        // draw polygon edges
-        drawPolygon(vertices, vertexCount, color);
+		// draw polygon edges
+		drawPolygon(vertices, vertexCount, color);
 		#end
 		
 	}
@@ -106,7 +106,7 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 		
 		#if createjs
 		m_graphics.setStrokeStyle(m_lineThickness);
-        m_graphics.beginStroke(color.getString(m_alpha));
+		m_graphics.beginStroke(color.getString(m_alpha));
 		m_graphics.drawCircle(center.x * m_drawScale, center.y * m_drawScale, radius * m_drawScale);
 		#end
 		
@@ -124,9 +124,9 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 		m_graphics.moveTo(0,0);
 		m_graphics.moveTo(center.x * m_drawScale, center.y * m_drawScale);
 		m_graphics.setStrokeStyle(m_lineThickness);
-        m_graphics.beginStroke(color.getString(m_alpha));
+		m_graphics.beginStroke(color.getString(m_alpha));
 		m_graphics.lineTo((center.x + axis.x * radius) * m_drawScale, (center.y + axis.y * radius) * m_drawScale);
-        m_graphics.endStroke();
+		m_graphics.endStroke();
 		#end
 		
 	}
@@ -139,10 +139,10 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 		
 		#if createjs
 		m_graphics.setStrokeStyle(m_lineThickness);
-        m_graphics.beginStroke(color.getString(m_alpha));
+		m_graphics.beginStroke(color.getString(m_alpha));
 		m_graphics.moveTo(p1.x * m_drawScale, p1.y * m_drawScale);
 		m_graphics.lineTo(p2.x * m_drawScale, p2.y * m_drawScale);
-        m_graphics.endStroke();
+		m_graphics.endStroke();
 		#end
 		
 	}
@@ -154,15 +154,15 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 	override public function drawTransform(xf:B2Transform) : Void{
 		
 		#if createjs
-        m_graphics.moveTo(xf.position.x * m_drawScale, xf.position.y * m_drawScale);
+		m_graphics.moveTo(xf.position.x * m_drawScale, xf.position.y * m_drawScale);
 		m_graphics.setStrokeStyle(m_lineThickness);
-        m_graphics.beginStroke(new B2Color( 1, 0, 0 ).getString(m_alpha));
+		m_graphics.beginStroke(new B2Color( 1, 0, 0 ).getString(m_alpha));
 		m_graphics.lineTo((xf.position.x + m_xformScale*xf.R.col1.x) * m_drawScale, (xf.position.y + m_xformScale*xf.R.col1.y) * m_drawScale);
-        m_graphics.endStroke();
-        m_graphics.beginStroke(new B2Color( 0, 1, 0 ).getString(m_alpha));
+		m_graphics.endStroke();
+		m_graphics.beginStroke(new B2Color( 0, 1, 0 ).getString(m_alpha));
 		m_graphics.moveTo(xf.position.x * m_drawScale, xf.position.y * m_drawScale);
 		m_graphics.lineTo((xf.position.x + m_xformScale * xf.R.col2.x) * m_drawScale, (xf.position.y + m_xformScale * xf.R.col2.y) * m_drawScale);
-        m_graphics.endStroke();
+		m_graphics.endStroke();
 		#end
 		
 	}
