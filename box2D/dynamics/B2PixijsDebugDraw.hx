@@ -23,10 +23,9 @@ import box2D.common.math.B2Transform;
 import box2D.common.math.B2Vec2;
 import box2D.common.B2Color;
 
-#if createjs
-import createjs.easeljs.Graphics;
-import createjs.easeljs.Shape;
-import createjs.easeljs.Container;
+#if pixijs
+import pixi.core.graphics.Graphics;
+import pixi.core.display.Container;
 #end
 
 
@@ -34,7 +33,7 @@ import createjs.easeljs.Container;
 * Implement and register this class with a b2World to provide debug drawing of physics
 * entities in your game.
 */
-class B2CreatejsDebugDraw extends B2DebugDraw
+class B2PixijsDebugDraw extends B2DebugDraw
 {
 
 	public function new () {
@@ -43,15 +42,14 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 		m_fillAlpha = .5;
 	}
 
-	#if createjs
+	#if pixijs
 	/**
 	* Set the sprite
 	*/
 	public function setSprite(sprite:Container) : Void {
 		m_sprite = sprite;
-		var shape = new Shape();
-		m_graphics = shape.graphics;
-		m_sprite.addChild(shape);
+		m_graphics = new Graphics();
+		m_sprite.addChild(m_graphics);
 	}
 	
 	/**
@@ -67,15 +65,13 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 	*/
 	override public function drawPolygon(vertices:Array <B2Vec2>, vertexCount:Int, color:B2Color) : Void{
 		
-		#if createjs
-		m_graphics.setStrokeStyle( m_lineThickness );
+		#if pixijs
+		m_graphics.lineStyle(m_lineThickness, color.color, m_alpha);
 		m_graphics.moveTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
-		m_graphics.beginStroke(color.getString(m_alpha));
 		for (i in 1...vertexCount){
 				m_graphics.lineTo(vertices[i].x * m_drawScale, vertices[i].y * m_drawScale);
 		}
 		m_graphics.lineTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
-		m_graphics.endStroke();
 		#end
 		
 	}
@@ -85,10 +81,10 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 	*/
 	override public function drawSolidPolygon(vertices:Array <B2Vec2>, vertexCount:Int, color:B2Color) : Void{
 		
-		#if createjs
+		#if pixijs
 		// fill polygon
 		m_graphics.moveTo(vertices[0].x * m_drawScale, vertices[0].y * m_drawScale);
-		m_graphics.beginFill(color.getString(m_fillAlpha));
+		m_graphics.beginFill(color.color, m_fillAlpha);
 		for (i in 1...vertexCount){
 				m_graphics.lineTo(vertices[i].x * m_drawScale, vertices[i].y * m_drawScale);
 		}
@@ -105,9 +101,8 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 	*/
 	override public function drawCircle(center:B2Vec2, radius:Float, color:B2Color) : Void{
 		
-		#if createjs
-		m_graphics.setStrokeStyle(m_lineThickness);
-		m_graphics.beginStroke(color.getString(m_alpha));
+		#if pixijs
+		m_graphics.lineStyle(m_lineThickness, color.color, m_alpha);
 		m_graphics.drawCircle(center.x * m_drawScale, center.y * m_drawScale, radius * m_drawScale);
 		#end
 		
@@ -118,16 +113,14 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 	*/
 	override public function drawSolidCircle(center:B2Vec2, radius:Float, axis:B2Vec2, color:B2Color) : Void{
 		
-		#if createjs
-		m_graphics.beginFill(color.getString(m_fillAlpha));
+		#if pixijs
+		m_graphics.beginFill(color.color, m_fillAlpha);
 		m_graphics.drawCircle(center.x * m_drawScale, center.y * m_drawScale, radius * m_drawScale);
 		m_graphics.endFill();
 		m_graphics.moveTo(0,0);
-		m_graphics.setStrokeStyle(m_lineThickness);
-		m_graphics.beginStroke(color.getString(m_alpha));
 		m_graphics.moveTo(center.x * m_drawScale, center.y * m_drawScale);
+		m_graphics.lineStyle(m_lineThickness, color.color, m_alpha);
 		m_graphics.lineTo((center.x + axis.x * radius) * m_drawScale, (center.y + axis.y * radius) * m_drawScale);
-		m_graphics.endStroke();
 		#end
 		
 	}
@@ -138,12 +131,10 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 	*/
 	override public function drawSegment(p1:B2Vec2, p2:B2Vec2, color:B2Color) : Void{
 		
-		#if createjs
-		m_graphics.setStrokeStyle(m_lineThickness);
-		m_graphics.beginStroke(color.getString(m_alpha));
+		#if pixijs
+		m_graphics.lineStyle(m_lineThickness, color.color, m_alpha);
 		m_graphics.moveTo(p1.x * m_drawScale, p1.y * m_drawScale);
 		m_graphics.lineTo(p2.x * m_drawScale, p2.y * m_drawScale);
-		m_graphics.endStroke();
 		#end
 		
 	}
@@ -154,16 +145,13 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 	*/
 	override public function drawTransform(xf:B2Transform) : Void{
 		
-		#if createjs
-		m_graphics.setStrokeStyle(m_lineThickness);
-		m_graphics.beginStroke(new B2Color( 1, 0, 0 ).getString(m_alpha));
+		#if pixijs
 		m_graphics.moveTo(xf.position.x * m_drawScale, xf.position.y * m_drawScale);
+		m_graphics.lineStyle(m_lineThickness, new B2Color( 1, 0, 0 ).color, m_alpha);
 		m_graphics.lineTo((xf.position.x + m_xformScale*xf.R.col1.x) * m_drawScale, (xf.position.y + m_xformScale*xf.R.col1.y) * m_drawScale);
-		m_graphics.endStroke();
-		m_graphics.beginStroke(new B2Color( 0, 1, 0 ).getString(m_alpha));
+		m_graphics.lineStyle(m_lineThickness, new B2Color( 0, 1, 0 ).color, m_alpha);
 		m_graphics.moveTo(xf.position.x * m_drawScale, xf.position.y * m_drawScale);
 		m_graphics.lineTo((xf.position.x + m_xformScale * xf.R.col2.x) * m_drawScale, (xf.position.y + m_xformScale * xf.R.col2.y) * m_drawScale);
-		m_graphics.endStroke();
 		#end
 		
 	}
@@ -173,14 +161,14 @@ class B2CreatejsDebugDraw extends B2DebugDraw
 	 */
 	override public function clear():Void {
 
-		#if createjs
+		#if pixijs
 		m_graphics.clear();
 		#end
 
 	}
 	
 
-	#if createjs
+	#if pixijs
 	public var m_sprite:Container;
 	public var m_graphics:Graphics;
 	#end
