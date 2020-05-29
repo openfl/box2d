@@ -177,7 +177,7 @@ class B2Body
 	 * @param fixture the fixture to be removed.
 	 * @warning This function is locked during callbacks.
 	 */
-	public function DestroyFixture(fixture:B2Fixture) : Void{
+	public function destroyFixture(fixture:B2Fixture) : Void{
 		//b2Settings.b2Assert(m_world.IsLocked() == false);
 		if (m_world.isLocked() == true)
 		{
@@ -372,7 +372,7 @@ class B2Body
 			return;
 		}
 
-		if (v.lengthSquared() > 0) {
+		if (v.lengthSquared() > 0.0) {
 			setAwake(true);
 		}
 
@@ -397,7 +397,7 @@ class B2Body
 			return;
 		}
 
-		if (omega * omega > 0) {
+		if (omega * omega > 0.0) {
 			setAwake(true);
 		}
 
@@ -447,7 +447,7 @@ class B2Body
 			return;
 		}
 		
-		if (isAwake() == false)
+		if (!isAwake())
 		{
 			setAwake(true);
 		}
@@ -457,6 +457,21 @@ class B2Body
 		m_force.y += force.y;
 		//m_torque += b2Cross(point - m_sweep.c, force);
 		m_torque += ((point.x - m_sweep.c.x) * force.y - (point.y - m_sweep.c.y) * force.x);
+	}
+
+	public function applyForceToCenter(force:B2Vec2) {
+		if (m_type != DYNAMIC_BODY) {
+			return;
+		}
+			
+		if (!isAwake())
+		{
+			setAwake(true);
+		}
+		
+		//m_force += force;
+		m_force.x += force.x;
+		m_force.y += force.y;
 	}
 
 	/**
@@ -485,13 +500,13 @@ class B2Body
 	* @param impulse the world impulse vector, usually in N-seconds or kg-m/s.
 	* @param point the world position of the point of application.
 	*/
-	public function applyImpulse(impulse:B2Vec2, point:B2Vec2) : Void{
+	public function applyLinearImpulse(impulse:B2Vec2, point:B2Vec2) : Void{
 		if (m_type != DYNAMIC_BODY)
 		{
 			return;
 		}
 		
-		if (isAwake() == false)
+		if (!isAwake())
 		{
 			setAwake(true);
 		}
@@ -500,6 +515,35 @@ class B2Body
 		m_linearVelocity.y += m_invMass * impulse.y;
 		//m_angularVelocity += m_invI * b2Cross(point - m_sweep.c, impulse);
 		m_angularVelocity += m_invI * ((point.x - m_sweep.c.x) * impulse.y - (point.y - m_sweep.c.y) * impulse.x);
+	}
+
+	public function applyLinearImpulseToCenter(impulse:B2Vec2) {
+		if (m_type != DYNAMIC_BODY)
+		{
+			return;
+		}
+		
+		if (!isAwake())
+		{
+			setAwake(true);
+		}
+		//m_linearVelocity += m_invMass * impulse;
+		m_linearVelocity.x += m_invMass * impulse.x;
+		m_linearVelocity.y += m_invMass * impulse.y;
+	}
+
+	public function applyAngularImpulse(impulse:Float) {
+		if (m_type != DYNAMIC_BODY)
+		{
+			return;
+		}
+		
+		if (!isAwake())
+		{
+			setAwake(true);
+		}
+
+		m_angularVelocity += m_invI * impulse;
 	}
 	
 	/**
