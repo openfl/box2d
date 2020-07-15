@@ -20,6 +20,7 @@ package box2D.common.math;
 
 import box2D.common.B2Settings;
 import box2D.collision.B2AABB;
+import js.Syntax;
 
 /**
 * @private
@@ -286,7 +287,7 @@ class B2Math {
 		
 		#elseif js
 		
-		return untyped __js__ ("Number.MIN_VALUE");
+		return Syntax.code("Number.MIN_VALUE");
 		
 		#else
 		
@@ -305,7 +306,7 @@ class B2Math {
 		
 		#elseif js
 		
-		return untyped __js__ ("Number.MAX_VALUE");
+		return Syntax.code("Number.MAX_VALUE");
 		
 		#else
 		
