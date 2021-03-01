@@ -139,5 +139,5 @@ class B2BodyDef
 	/**
 	 * Scale the gravity applied to this body.
 	 */
-	 public var gravityScale:Float;
+	public var gravityScale:Float;
 }
