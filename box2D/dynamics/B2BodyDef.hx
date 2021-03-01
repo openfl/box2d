@@ -50,6 +50,7 @@ class B2BodyDef
 		type = STATIC_BODY;
 		active = true;
 		inertiaScale = 1.0;
+		gravityScale = 1.0;
 	}
 
 	/** The body type: static, kinematic, or dynamic. A member of the b2BodyType class
@@ -134,4 +135,9 @@ class B2BodyDef
 	 * @warning Experimental
 	 */
 	public var inertiaScale:Float;
+
+	/**
+	 * Scale the gravity applied to this body.
+	 */
+	 public var gravityScale:Float;
 }
