@@ -413,6 +413,7 @@ class B2Body
 		bd.allowSleep = (m_flags & e_allowSleepFlag) == e_allowSleepFlag;
 		bd.angle = getAngle();
 		bd.angularDamping = m_angularDamping;
+		bd.gravityScale = getGravityScale();
 		bd.angularVelocity = m_angularVelocity;
 		bd.fixedRotation = (m_flags & e_fixedRotationFlag) == e_fixedRotationFlag;
 		bd.bullet = (m_flags & e_bulletFlag) == e_bulletFlag;
@@ -876,6 +877,22 @@ class B2Body
 	{
 		m_angularDamping = angularDamping;
 	}
+
+	/**
+	* Get the gravity scale of the body.
+	*/
+	public function getGravityScale():Float
+	{
+		return m_gravityScale;
+	}
+
+	/**
+	* Set the gravity scale of the body.
+	*/
+	public function setGravityScale(scale:Float):Void
+	{
+		m_angularDamping = scale;
+	}
 	
 	/**
 	 * Set the type of this body. This may alter the mass and velocity
@@ -1231,6 +1248,7 @@ class B2Body
 		
 		m_linearDamping = bd.linearDamping;
 		m_angularDamping = bd.angularDamping;
+		m_gravityScale = bd.gravityScale;
 		
 		m_force.set(0.0, 0.0);
 		m_torque = 0.0;
@@ -1364,6 +1382,7 @@ class B2Body
 
 	public var m_linearDamping:Float;
 	public var m_angularDamping:Float;
+	public var m_gravityScale:Float;
 
 	public var m_sleepTime:Float;
 
