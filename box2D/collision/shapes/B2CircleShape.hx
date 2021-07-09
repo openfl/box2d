@@ -45,7 +45,7 @@ class B2CircleShape extends B2Shape
 	override public function set(other:B2Shape):Void 
 	{
 		super.set(other);
-		if (Std.is (other, B2CircleShape))
+		if (Std.isOfType (other, B2CircleShape))
 		{
 			var other2:B2CircleShape = cast (other, B2CircleShape);
 			m_p.setV(other2.m_p);
