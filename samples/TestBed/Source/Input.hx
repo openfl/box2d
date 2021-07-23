@@ -49,7 +49,7 @@ class Input
 	static public var mouse:Sprite = new Sprite();
 
 	// stage
-	static public var m_stageMc;
+	static public var m_stageMc:Sprite;
 
 	// ======================
 	// constructor
