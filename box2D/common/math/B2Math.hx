@@ -20,7 +20,9 @@ package box2D.common.math;
 
 import box2D.common.B2Settings;
 import box2D.collision.B2AABB;
+#if js
 import js.Syntax;
+#end
 
 /**
 * @private

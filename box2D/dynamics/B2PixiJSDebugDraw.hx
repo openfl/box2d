@@ -33,7 +33,7 @@ import pixi.core.display.Container;
 * Implement and register this class with a b2World to provide debug drawing of physics
 * entities in your game.
 */
-class B2PixijsDebugDraw extends B2DebugDraw
+class B2PixiJSDebugDraw extends B2DebugDraw
 {
 
 	public function new () {
