@@ -64,6 +64,16 @@ class B2Color
 		return (_r << 16) | (_g << 8) | (_b);
 	}
 	
+	// String
+	public function getString(alpha:Float = 1) : String{
+		if (alpha == 1 ) {
+			return "#" + StringTools.hex((_r & 0xFF) << 16 | (_g & 0xFF) << 8 | (_b & 0xFF));
+		}
+		else {
+			return "rgba(" + _r + "," + _g + "," + _b + "," + alpha + ")";
+		}
+	}
+	
 	private var _r:Int;
 	private var _g:Int;
 	private var _b:Int;
