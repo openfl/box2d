@@ -1,20 +1,20 @@
-﻿/*
-* Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
-*
-* This software is provided 'as-is', without any express or implied
-* warranty.  In no event will the authors be held liable for any damages
-* arising from the use of this software.
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute it
-* freely, subject to the following restrictions:
-* 1. The origin of this software must not be misrepresented; you must not
-* claim that you wrote the original software. If you use this software
-* in a product, an acknowledgment in the product documentation would be
-* appreciated but is not required.
-* 2. Altered source versions must be plainly marked as such, and must not be
-* misrepresented as being the original software.
-* 3. This notice may not be removed or altered from any source distribution.
-*/
+/*
+ * Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty.  In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ */
 
 package box2D.common.math;
 
@@ -25,34 +25,32 @@ import js.Syntax;
 #end
 
 /**
-* @private
-*/
-class B2Math {
-	
-	
+ * @private
+ */
+class B2Math
+{
 	/**
-	* This function is used to ensure that a floating point number is
-	* not a NaN or infinity.
-	*/
-	static public function isValid(x:Float) : Bool
+	 * This function is used to ensure that a floating point number is
+	 * not a NaN or infinity.
+	 */
+	static public function isValid(x:Float):Bool
 	{
-		if (Math.isNaN (x) || x == Math.NEGATIVE_INFINITY || x == Math.POSITIVE_INFINITY) {
-			
+		if (Math.isNaN(x) || x == Math.NEGATIVE_INFINITY || x == Math.POSITIVE_INFINITY)
+		{
 			return false;
-			
 		}
-		
+
 		return true;
-		//return isFinite(x);
+		// return isFinite(x);
 	}
-	
+
 	/*static public function b2InvSqrt(x:Float):Float{
 		union
 		{
 			float32 x;
 			int32 i;
 		} convert;
-		
+
 		convert.x = x;
 		float32 xhalf = 0.5f * x;
 		convert.i = 0x5f3759df - (convert.i >> 1);
@@ -60,7 +58,6 @@ class B2Math {
 		x = x * (1.5f - xhalf * x * x);
 		return x;
 	}*/
-
 	static public function dot(a:B2Vec2, b:B2Vec2):Float
 	{
 		return a.x * b.x + a.y * b.y;
@@ -98,22 +95,22 @@ class B2Math {
 		var u:B2Vec2 = new B2Vec2(dot(v, A.col1), dot(v, A.col2));
 		return u;
 	}
-	
-	static public function mulX(T:B2Transform, v:B2Vec2) : B2Vec2
+
+	static public function mulX(T:B2Transform, v:B2Vec2):B2Vec2
 	{
 		var a:B2Vec2 = mulMV(T.R, v);
 		a.x += T.position.x;
 		a.y += T.position.y;
-		//return T.position + b2Mul(T.R, v);
+		// return T.position + b2Mul(T.R, v);
 		return a;
 	}
 
 	static public function mulXT(T:B2Transform, v:B2Vec2):B2Vec2
 	{
 		var a:B2Vec2 = subtractVV(v, T.position);
-		//return b2MulT(T.R, v - T.position);
-		var tX:Float = (a.x * T.R.col1.x + a.y * T.R.col1.y );
-		a.y = (a.x * T.R.col2.x + a.y * T.R.col2.y );
+		// return b2MulT(T.R, v - T.position);
+		var tX:Float = (a.x * T.R.col1.x + a.y * T.R.col1.y);
+		a.y = (a.x * T.R.col2.x + a.y * T.R.col2.y);
 		a.x = tX;
 		return a;
 	}
@@ -129,17 +126,19 @@ class B2Math {
 		var v:B2Vec2 = new B2Vec2(a.x - b.x, a.y - b.y);
 		return v;
 	}
-	
-	static public function distance(a:B2Vec2, b:B2Vec2) : Float{
-		var cX:Float = a.x-b.x;
-		var cY:Float = a.y-b.y;
-		return Math.sqrt(cX*cX + cY*cY);
+
+	static public function distance(a:B2Vec2, b:B2Vec2):Float
+	{
+		var cX:Float = a.x - b.x;
+		var cY:Float = a.y - b.y;
+		return Math.sqrt(cX * cX + cY * cY);
 	}
-	
-	static public function distanceSquared(a:B2Vec2, b:B2Vec2) : Float{
-		var cX:Float = a.x-b.x;
-		var cY:Float = a.y-b.y;
-		return (cX*cX + cY*cY);
+
+	static public function distanceSquared(a:B2Vec2, b:B2Vec2):Float
+	{
+		var cX:Float = a.x - b.x;
+		var cY:Float = a.y - b.y;
+		return (cX * cX + cY * cY);
 	}
 
 	static public function mulFV(s:Float, a:B2Vec2):B2Vec2
@@ -219,7 +218,7 @@ class B2Math {
 		return maxV(low, minV(a, high));
 	}
 
-	static public function swap(a:Array <Dynamic>, b:Array <Dynamic>) : Void
+	static public function swap(a:Array<Dynamic>, b:Array<Dynamic>):Void
 	{
 		var tmp:Dynamic = a[0];
 		a[0] = b[0];
@@ -232,7 +231,7 @@ class B2Math {
 		return Math.random() * 2 - 1;
 	}
 
-	static public function randomRange(lo:Float, hi:Float) : Float
+	static public function randomRange(lo:Float, hi:Float):Float
 	{
 		var r:Float = Math.random();
 		r = (hi - lo) * r + lo;
@@ -250,7 +249,7 @@ class B2Math {
 		x |= (x >> 2) & 0x3FFFFFFF;
 		x |= (x >> 4) & 0x0FFFFFFF;
 		x |= (x >> 8) & 0x00FFFFFF;
-		x |= (x >> 16)& 0x0000FFFF;
+		x |= (x >> 16) & 0x0000FFFF;
 		return x + 1;
 	}
 
@@ -259,64 +258,43 @@ class B2Math {
 		var result:Bool = x > 0 && (x & (x - 1)) == 0;
 		return result;
 	}
-	
-	
+
 	// Temp vector functions to reduce calls to 'new'
 	/*static public var tempVec:B2Vec2 = new B2Vec2();
-	static public var tempVec2:B2Vec2 = new B2Vec2();
-	static public var tempVec3:B2Vec2 = new B2Vec2();
-	static public var tempVec4:B2Vec2 = new B2Vec2();
-	static public var tempVec5:B2Vec2 = new B2Vec2();
-	
-	static public var tempMat:B2Mat22 = new B2Mat22();	
-	
-	static public var tempAABB:B2AABB = new B2AABB();	*/
-	
+		static public var tempVec2:B2Vec2 = new B2Vec2();
+		static public var tempVec3:B2Vec2 = new B2Vec2();
+		static public var tempVec4:B2Vec2 = new B2Vec2();
+		static public var tempVec5:B2Vec2 = new B2Vec2();
+
+		static public var tempMat:B2Mat22 = new B2Mat22();	
+
+		static public var tempAABB:B2AABB = new B2AABB(); */
 	static public var b2Vec2_zero:B2Vec2 = new B2Vec2(0.0, 0.0);
 	static public var b2Mat22_identity:B2Mat22 = B2Mat22.fromVV(new B2Vec2(1.0, 0.0), new B2Vec2(0.0, 1.0));
 	static public var b2Transform_identity:B2Transform = new B2Transform(b2Vec2_zero, b2Mat22_identity);
-	
-	
-	public static var MIN_VALUE (get, null):Float;
-	public static var MAX_VALUE (get, null):Float;
-	
-	
-	private static inline function get_MIN_VALUE ():Float {
-		
-		#if flash
-		
-		return untyped __global__ ["Number"].MIN_VALUE;
-		
-		#elseif js
-		
-		return Syntax.code("Number.MIN_VALUE");
-		
-		#else
-		
-		return 2.2250738585072014e-308;
-		
-		#end
-		
-	}
-	
-	
-	private static inline function get_MAX_VALUE ():Float {
-		
-		#if flash
-		
-		return untyped __global__ ["Number"].MAX_VALUE;
-		
-		#elseif js
-		
-		return Syntax.code("Number.MAX_VALUE");
-		
-		#else
-		
-		return 1.7976931348623158e+308;
-		
-		#end
-		
-	}
-	
 
+	public static var MIN_VALUE(get, null):Float;
+	public static var MAX_VALUE(get, null):Float;
+
+	private static inline function get_MIN_VALUE():Float
+	{
+		#if flash
+		return untyped __global__["Number"].MIN_VALUE;
+		#elseif js
+		return Syntax.code("Number.MIN_VALUE");
+		#else
+		return 2.2250738585072014e-308;
+		#end
+	}
+
+	private static inline function get_MAX_VALUE():Float
+	{
+		#if flash
+		return untyped __global__["Number"].MAX_VALUE;
+		#elseif js
+		return Syntax.code("Number.MAX_VALUE");
+		#else
+		return 1.7976931348623158e+308;
+		#end
+	}
 }

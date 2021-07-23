@@ -1,9 +1,7 @@
-﻿package box2D.collision;
-
+package box2D.collision;
 
 import box2D.common.math.B2Vec2;
 
-	
 /**
  * The broad-phase is used for computing pairs and performing volume queries and ray casts.
  * This broad-phase does not persist pairs. Instead, this reports potentially new pairs.
@@ -22,7 +20,7 @@ class B2DynamicTreeBroadPhase implements IBroadPhase
 		bufferMove(proxy);
 		return proxy;
 	}
-	
+
 	/**
 	 * Destroy a proxy. It is up to the client to remove any pairs.
 	 */
@@ -32,7 +30,7 @@ class B2DynamicTreeBroadPhase implements IBroadPhase
 		--m_proxyCount;
 		m_tree.destroyProxy(proxy);
 	}
-	
+
 	/**
 	 * Call MoveProxy as many times as you like, then when you are done
 	 * call UpdatePairs to finalized the proxy pairs (for your time step).
@@ -45,14 +43,14 @@ class B2DynamicTreeBroadPhase implements IBroadPhase
 			bufferMove(proxy);
 		}
 	}
-	
+
 	public function testOverlap(proxyA:Dynamic, proxyB:Dynamic):Bool
 	{
 		var aabbA:B2AABB = m_tree.getFatAABB(proxyA);
 		var aabbB:B2AABB = m_tree.getFatAABB(proxyB);
 		return aabbA.testOverlap(aabbB);
 	}
-	
+
 	/**
 	 * Get user data from a proxy. Returns null if the proxy is invalid.
 	 */
@@ -60,7 +58,7 @@ class B2DynamicTreeBroadPhase implements IBroadPhase
 	{
 		return m_tree.getUserData(proxy);
 	}
-	
+
 	/**
 	 * Get the AABB for a proxy.
 	 */
@@ -68,7 +66,7 @@ class B2DynamicTreeBroadPhase implements IBroadPhase
 	{
 		return m_tree.getFatAABB(proxy);
 	}
-	
+
 	/**
 	 * Get the number of proxies.
 	 */
@@ -76,42 +74,40 @@ class B2DynamicTreeBroadPhase implements IBroadPhase
 	{
 		return m_proxyCount;
 	}
-	
+
 	/**
 	 * Record pairs found by querying the tree.
 	 */
 	function updatePairsQueryCallback(proxy:B2DynamicTreeNode):Bool
 	{
 		// A proxy cannot form a pair with itself.
-		if (proxy == m_queryProxy)
-			return true;
-			
+		if (proxy == m_queryProxy) return true;
+
 		// Grow the pair buffer as needed
 		if (m_pairCount == m_pairBuffer.length)
 		{
 			m_pairBuffer[m_pairCount] = new B2DynamicTreePair();
 		}
-		
+
 		var pair:B2DynamicTreePair = m_pairBuffer[m_pairCount];
-		
-		if (proxy.id < m_queryProxy.id) {
-			
+
+		if (proxy.id < m_queryProxy.id)
+		{
 			pair.proxyA = proxy;
 			pair.proxyB = m_queryProxy;
-			
-		} else {
-			
+		}
+		else
+		{
 			pair.proxyA = m_queryProxy;
 			pair.proxyB = proxy;
-			
 		}
-		//pair.proxyA = proxy < m_queryProxy?proxy:m_queryProxy;
-		//pair.proxyB = proxy >= m_queryProxy?proxy:m_queryProxy;
+			// pair.proxyA = proxy < m_queryProxy?proxy:m_queryProxy;
+			// pair.proxyB = proxy >= m_queryProxy?proxy:m_queryProxy;
 		++m_pairCount;
-		
-		return true;		
+
+		return true;
 	}
-	
+
 	/**
 	 * Update the pairs. This results in pair callbacks. This can only add pairs.
 	 */
@@ -129,33 +125,33 @@ class B2DynamicTreeBroadPhase implements IBroadPhase
 			var fatAABB:B2AABB = m_tree.getFatAABB(queryProxy);
 			m_tree.query(updatePairsQueryCallback, fatAABB);
 		}
-		
+
 		// Reset move buffer
-		m_moveBuffer = new Array <B2DynamicTreeNode> ();
-		//m_moveBuffer.length = 0;
-		
+		m_moveBuffer = new Array<B2DynamicTreeNode>();
+		// m_moveBuffer.length = 0;
+
 		// Sort the pair buffer to expose duplicates.
 		// TODO: Something more sensible
-		//m_pairBuffer.sort(ComparePairs);
-		
+		// m_pairBuffer.sort(ComparePairs);
+
 		// Send the pair buffer
-		//for (i in 0...m_pairCount)
+		// for (i in 0...m_pairCount)
 		var pairing = true;
 		var i = 0;
 		while (pairing)
 		{
-			if (i >= m_pairCount) {
-				
+			if (i >= m_pairCount)
+			{
 				pairing = false;
-				
-			} else {
-				
+			}
+			else
+			{
 				var primaryPair:B2DynamicTreePair = m_pairBuffer[i];
 				var userDataA:Dynamic = m_tree.getUserData(primaryPair.proxyA);
 				var userDataB:Dynamic = m_tree.getUserData(primaryPair.proxyB);
 				callbackMethod(userDataA, userDataB);
 				++i;
-				
+
 				// Skip any duplicate pairs
 				while (i < m_pairCount)
 				{
@@ -166,77 +162,73 @@ class B2DynamicTreeBroadPhase implements IBroadPhase
 					}
 					++i;
 				}
-				
 			}
 		}
 	}
-	
+
 	/**
 	 * @inheritDoc
 	 */
-	public function query(callbackMethod:Dynamic -> Bool, aabb:B2AABB):Void
+	public function query(callbackMethod:Dynamic->Bool, aabb:B2AABB):Void
 	{
 		m_tree.query(callbackMethod, aabb);
 	}
-	
+
 	/**
 	 * @inheritDoc
 	 */
-	public function rayCast(callbackMethod:B2RayCastInput -> Dynamic -> Float, input:B2RayCastInput):Void
+	public function rayCast(callbackMethod:B2RayCastInput->Dynamic->Float, input:B2RayCastInput):Void
 	{
 		m_tree.rayCast(callbackMethod, input);
 	}
-	
-	
+
 	public function validate():Void
 	{
-		//TODO_BORIS
+		// TODO_BORIS
 	}
-	
+
 	public function rebalance(iterations:Int):Void
 	{
 		m_tree.rebalance(iterations);
 	}
-	
-	
+
 	// Private ///////////////
-	
+
 	private function bufferMove(proxy:B2DynamicTreeNode):Void
 	{
 		m_moveBuffer[m_moveBuffer.length] = proxy;
 	}
-	
+
 	private function unBufferMove(proxy:B2DynamicTreeNode):Void
 	{
-		m_moveBuffer.remove (proxy);
+		m_moveBuffer.remove(proxy);
 	}
-	
+
 	private function comparePairs(pair1:B2DynamicTreePair, pair2:B2DynamicTreePair):Int
 	{
-		//TODO_BORIS:
+		// TODO_BORIS:
 		// We cannot consistently sort objects easily in AS3
 		// The caller of this needs replacing with a different method.
 		return 0;
 	}
-	
-	public function new () {
-		
+
+	public function new()
+	{
 		m_tree = new B2DynamicTree();
-		m_moveBuffer = new Array <B2DynamicTreeNode>();
-		
-		m_pairBuffer = new Array <B2DynamicTreePair>();
+		m_moveBuffer = new Array<B2DynamicTreeNode>();
+
+		m_pairBuffer = new Array<B2DynamicTreePair>();
 		m_pairCount = 0;
-		
+
 		m_proxyCount = 0;
-		
 	}
-	
+
 	private var m_tree:B2DynamicTree;
 	private var m_proxyCount:Int;
-	private var m_moveBuffer:Array <B2DynamicTreeNode>;
-	
-	private var m_pairBuffer:Array <B2DynamicTreePair>;
+	private var m_moveBuffer:Array<B2DynamicTreeNode>;
+
+	private var m_pairBuffer:Array<B2DynamicTreePair>;
 	private var m_pairCount:Int;
-	
+
 	private var m_queryProxy:B2DynamicTreeNode;
 }

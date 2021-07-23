@@ -1,45 +1,43 @@
-﻿/*
-* Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
-*
-* This software is provided 'as-is', without any express or implied
-* warranty.  In no event will the authors be held liable for any damages
-* arising from the use of this software.
-* Permission is granted to anyone to use this software for any purpose,
-* including commercial applications, and to alter it and redistribute it
-* freely, subject to the following restrictions:
-* 1. The origin of this software must not be misrepresented; you must not
-* claim that you wrote the original software. If you use this software
-* in a product, an acknowledgment in the product documentation would be
-* appreciated but is not required.
-* 2. Altered source versions must be plainly marked as such, and must not be
-* misrepresented as being the original software.
-* 3. This notice may not be removed or altered from any source distribution.
-*/
+/*
+ * Copyright (c) 2006-2007 Erin Catto http://www.gphysics.com
+ *
+ * This software is provided 'as-is', without any express or implied
+ * warranty.  In no event will the authors be held liable for any damages
+ * arising from the use of this software.
+ * Permission is granted to anyone to use this software for any purpose,
+ * including commercial applications, and to alter it and redistribute it
+ * freely, subject to the following restrictions:
+ * 1. The origin of this software must not be misrepresented; you must not
+ * claim that you wrote the original software. If you use this software
+ * in a product, an acknowledgment in the product documentation would be
+ * appreciated but is not required.
+ * 2. Altered source versions must be plainly marked as such, and must not be
+ * misrepresented as being the original software.
+ * 3. This notice may not be removed or altered from any source distribution.
+ */
 
 package box2D.dynamics;
 
-
 import box2D.common.math.B2Vec2;
 
-
 /**
-* A body definition holds all the data needed to construct a rigid body.
-* You can safely re-use body definitions.
-*/
+ * A body definition holds all the data needed to construct a rigid body.
+ * You can safely re-use body definitions.
+ */
 class B2BodyDef
 {
 	/**
-	* This constructor sets the body definition default values.
-	*/
-	public function new ()
+	 * This constructor sets the body definition default values.
+	 */
+	public function new()
 	{
 		position = new B2Vec2();
-		linearVelocity = new B2Vec2 ();
-		
+		linearVelocity = new B2Vec2();
+
 		userData = null;
-		//position.set(0.0, 0.0);
+		// position.set(0.0, 0.0);
 		angle = 0.0;
-		//linearVelocity.set(0, 0);
+		// linearVelocity.set(0, 0);
 		angularVelocity = 0.0;
 		linearDamping = 0.0;
 		angularDamping = 0.0;
@@ -71,12 +69,12 @@ class B2BodyDef
 	 * The world angle of the body in radians.
 	 */
 	public var angle:Float;
-	
+
 	/**
 	 * The linear velocity of the body's origin in world co-ordinates.
 	 */
 	public var linearVelocity:B2Vec2;
-	
+
 	/**
 	 * The angular velocity of the body.
 	 */
@@ -119,17 +117,17 @@ class B2BodyDef
 	 * @warning You should use this flag sparingly since it increases processing time.
 	 */
 	public var bullet:Bool;
-	
+
 	/**
 	 * Does this body start out active?
-	 */ 
+	 */
 	public var active:Bool;
-	
+
 	/**
 	 * Use this to store application specific body data.
 	 */
 	public var userData:Dynamic;
-	
+
 	/**
 	 * Scales the inertia tensor.
 	 * @warning Experimental
