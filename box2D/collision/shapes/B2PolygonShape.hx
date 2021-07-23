@@ -48,7 +48,7 @@ class B2PolygonShape extends B2Shape
 	public override function set(other:B2Shape):Void 
 	{
 		super.set(other);
-		if (Std.is (other, B2PolygonShape))
+		if (#if (haxe_ver >= 4.2) Std.isOfType #else Std.is #end (other, B2PolygonShape))
 		{
 			var other2:B2PolygonShape = cast (other, B2PolygonShape);
 			m_centroid.setV(other2.m_centroid);
