@@ -1094,6 +1094,7 @@ class B2Body
 				f = f.m_next;
 			}
 			// Contacts are created the next time step.
+			m_world.m_flags |= B2World.e_newFixture;
 		}
 		else
 		{
