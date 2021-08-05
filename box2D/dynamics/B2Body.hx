@@ -373,6 +373,11 @@ class B2Body
 		{
 			return;
 		}
+
+		if (v.lengthSquared() > 0) {
+			setAwake(true);
+		}
+
 		m_linearVelocity.setV(v);
 	}
 
@@ -395,6 +400,11 @@ class B2Body
 		{
 			return;
 		}
+
+		if (omega * omega > 0) {
+			setAwake(true);
+		}
+
 		m_angularVelocity = omega;
 	}
 
