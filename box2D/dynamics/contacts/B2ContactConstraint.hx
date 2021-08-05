@@ -56,6 +56,7 @@ class B2ContactConstraint
 	public var radius:Float = 0;
 	public var friction:Float = 0;
 	public var restitution:Float = 0;
+	public var restitutionThreshold:Float = 0;
 	public var pointCount:Int = 0;
 	public var manifold:B2Manifold;
 }

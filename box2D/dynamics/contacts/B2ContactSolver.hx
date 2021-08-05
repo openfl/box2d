@@ -80,6 +80,7 @@ class B2ContactSolver
 
 			var friction:Float = B2Settings.b2MixFriction(fixtureA.getFriction(), fixtureB.getFriction());
 			var restitution:Float = B2Settings.b2MixRestitution(fixtureA.getRestitution(), fixtureB.getRestitution());
+			var restitutionThreshold:Float = B2Settings.b2MixRestitutionThreshold(fixtureA.getRestitutionThreshold(), fixtureB.getRestitutionThreshold());
 
 			// var vA:B2Vec2 = bodyA.m_linearVelocity.Copy();
 			var vAX:Float = bodyA.m_linearVelocity.x;
@@ -107,6 +108,7 @@ class B2ContactSolver
 			cc.pointCount = manifold.m_pointCount;
 			cc.friction = friction;
 			cc.restitution = restitution;
+			cc.restitutionThreshold = restitutionThreshold;
 
 			cc.localPlaneNormal.x = manifold.m_localPlaneNormal.x;
 			cc.localPlaneNormal.y = manifold.m_localPlaneNormal.y;
@@ -168,7 +170,7 @@ class B2ContactSolver
 				var tY:Float = vBY + (wB * rBX) - vAY - (wA * rAX);
 				// var vRel:Float = b2Dot(cc.normal, t);
 				var vRel:Float = cc.normal.x * tX + cc.normal.y * tY;
-				if (vRel < -B2Settings.b2_velocityThreshold)
+				if (vRel < -cc.restitutionThreshold)
 				{
 					ccp.velocityBias += -cc.restitution * vRel;
 				}
