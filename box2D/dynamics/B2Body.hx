@@ -373,6 +373,11 @@ class B2Body
 		{
 			return;
 		}
+
+		if (v.lengthSquared() > 0) {
+			setAwake(true);
+		}
+
 		m_linearVelocity.setV(v);
 	}
 
@@ -395,6 +400,11 @@ class B2Body
 		{
 			return;
 		}
+
+		if (omega * omega > 0) {
+			setAwake(true);
+		}
+
 		m_angularVelocity = omega;
 	}
 
@@ -1084,6 +1094,7 @@ class B2Body
 				f = f.m_next;
 			}
 			// Contacts are created the next time step.
+			m_world.m_flags |= B2World.e_newFixture;
 		}
 		else
 		{
