@@ -1,6 +1,6 @@
 package box2D.dynamics.joints;
 
-@:enum abstract B2JointType(Int) from Int to Int
+enum abstract B2JointType(Int) from Int to Int
 {
 	var UNKNOWN_JOINT = 0;
 	var REVOLUTE_JOINT = 1;

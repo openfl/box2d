@@ -1,6 +1,6 @@
 package box2D.collision.shapes;
 
-@:enum abstract B2ShapeType(Int) from Int to Int
+enum abstract B2ShapeType(Int) from Int to Int
 {
 	var UNKNOWN_SHAPE = 0;
 	var CIRCLE_SHAPE = 1;
