@@ -79,19 +79,19 @@ class B2TensorDampingController extends B2Controller
 		var timestep:Float = step.dt;
 		if (timestep <= B2Math.MIN_VALUE) return;
 		if (timestep > maxTimestep && maxTimestep > 0) timestep = maxTimestep;
-		for (var i:B2ControllerEdge = m_bodyList;
-		i;
-		i = i.nextBody
-	)
+		var i:B2ControllerEdge = m_bodyList;
+		while (i != null)
 		{
 			var body:B2Body = i.body;
 			if (!body.isAwake())
 			{
 				// Sleeping bodies are still - so have no damping
+				i = i.nextBody;
 				continue;
 			}
 			var damping:B2Vec2 = body.getWorldVector(B2Math.mulMV(T, body.getLocalVector(body.getLinearVelocity())));
 			body.setLinearVelocity(new B2Vec2(body.getLinearVelocity().x + damping.x * timestep, body.getLinearVelocity().y + damping.y * timestep));
+			i = i.nextBody;
 		}
 	}
 }
