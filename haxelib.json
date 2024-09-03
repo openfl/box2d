@@ -6,6 +6,6 @@
   "description": "Box2D is a tremendously popular physics engine for most platforms.",
   "version": "1.2.3",
   "releasenote": "Added TestBed sample, better B2ShapeType, platform fixes",
-  "contributors": [ "singmajesty" , "Dimensionscape"],
+  "contributors": [ "singmajesty", "bowlerhat", "Dimensionscape" ],
   "dependencies": {}
 }
