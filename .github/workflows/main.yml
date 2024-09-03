@@ -20,37 +20,37 @@ jobs:
             !.git/
           if-no-files-found: error
 
-  # docs:
-  #   runs-on: ubuntu-latest
-  #   steps:
+  docs:
+    runs-on: ubuntu-latest
+    steps:
 
-  #     - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-  #     - uses: krdlab/setup-haxe@v1
-  #       with:
-  #         haxe-version: 4.2.5
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: 4.2.5
 
-  #     - name: Set HAXEPATH
-  #       run: |
-  #         echo "HAXEPATH=$HAXE_STD_PATH/.." >> $GITHUB_ENV
+      - name: Set HAXEPATH
+        run: |
+          echo "HAXEPATH=$HAXE_STD_PATH/.." >> $GITHUB_ENV
 
-  #     - name: Install Haxe dependencies
-  #       run: |
-  #         haxelib install lime --quiet
-  #         haxelib install openfl --quiet
-  #         haxelib install dox --quiet
-  #         haxelib dev box2d ${{ github.workspace }}
+      - name: Install Haxe dependencies
+        run: |
+          haxelib install lime --quiet
+          haxelib install openfl --quiet
+          haxelib install dox --quiet
+          haxelib dev box2d ${{ github.workspace }}
 
-  #     - name: Build docs
-  #       working-directory: scripts
-  #       run: |
-  #         haxe docs.hxml
+      - name: Build docs
+        working-directory: scripts
+        run: |
+          haxe docs.hxml
 
-  #     - uses: actions/upload-artifact@v4
-  #       with:
-  #         name: box2d-docs
-  #         path: docs
-  #         if-no-files-found: error
+      - uses: actions/upload-artifact@v4
+        with:
+          name: box2d-docs
+          path: docs
+          if-no-files-found: error
 
   samples:
     needs: package-haxelib
