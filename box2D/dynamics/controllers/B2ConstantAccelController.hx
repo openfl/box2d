@@ -46,7 +46,7 @@ class B2ConstantAccelController extends B2Controller
 			var body:B2Body = i.body;
 			if (!body.isAwake())
 			{
-				i = i.nextBody
+				i = i.nextBody;
 				continue;
 			}
 			// Am being lazy here

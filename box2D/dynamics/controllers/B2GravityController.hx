@@ -70,7 +70,7 @@ class B2GravityController extends B2Controller
 				while (j != i)
 				{
 					body2 = j.body;
-					p2 = body2.getWorldCenter()
+					p2 = body2.getWorldCenter();
 					dx = p2.x - p1.x;
 					dy = p2.y - p1.y;
 					r2 = dx * dx + dy * dy;
