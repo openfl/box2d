@@ -1,0 +1,95 @@
+name: CI
+on: [push, pull_request]
+
+jobs:
+
+  package-haxelib:
+    runs-on: ubuntu-latest
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: box2d-haxelib
+          path: |
+            ./
+            !scripts/
+            !haxe-*-*/
+            !neko-*-*/
+            !.git/
+          if-no-files-found: error
+
+  # docs:
+  #   runs-on: ubuntu-latest
+  #   steps:
+
+  #     - uses: actions/checkout@v4
+
+  #     - uses: krdlab/setup-haxe@v1
+  #       with:
+  #         haxe-version: 4.2.5
+
+  #     - name: Set HAXEPATH
+  #       run: |
+  #         echo "HAXEPATH=$HAXE_STD_PATH/.." >> $GITHUB_ENV
+
+  #     - name: Install Haxe dependencies
+  #       run: |
+  #         haxelib install lime --quiet
+  #         haxelib install openfl --quiet
+  #         haxelib install dox --quiet
+  #         haxelib dev box2d ${{ github.workspace }}
+
+  #     - name: Build docs
+  #       working-directory: scripts
+  #       run: |
+  #         haxe docs.hxml
+
+  #     - uses: actions/upload-artifact@v4
+  #       with:
+  #         name: box2d-docs
+  #         path: docs
+  #         if-no-files-found: error
+
+  samples:
+    needs: package-haxelib
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        haxe-version: [3.4.7, 4.0.5, 4.1.5, 4.2.5, 4.3.2]
+    steps:
+
+      - uses: krdlab/setup-haxe@v1
+        with:
+          haxe-version: ${{ matrix.haxe-version }}
+
+      - name: Set HAXEPATH
+        run: |
+          echo "HAXEPATH=$HAXE_STD_PATH/.." >> $GITHUB_ENV
+
+      - name: Install Haxe dependencies
+        run: |
+          haxelib install lime --quiet
+          haxelib install openfl --quiet
+          haxelib install actuate --quiet
+
+      - uses: actions/download-artifact@v4
+        with:
+          name: box2d-haxelib
+          path: box2d-haxelib
+
+      - name: Prepare box2d
+        run: |
+          haxelib dev box2d box2d-haxelib
+
+      - name: Build samples
+        run: |
+          haxelib run lime build samples/TestBed neko
+          haxelib run lime build samples/TestBed html5
+          haxelib run lime build samples/TestBed flash
+
+      - name: Build HashLink samples
+        if: ${{ matrix.haxe-version != '3.4.7' }}
+        run: |
+          haxelib run lime build samples/TestBed hl
