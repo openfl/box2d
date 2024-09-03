@@ -97,19 +97,17 @@ class B2GravityController extends B2Controller
 				body1 = i.body;
 				p1 = body1.getWorldCenter();
 				mass1 = body1.getMass();
-				for (j = m_bodyList;
-				j != i;
-				j = j.nextBody
-			)
-				{
+				j = m_bodyList;
+				while (j != i)
+					{
 					body2 = j.body;
-					p2 = body2.getWorldCenter()
+					p2 = body2.getWorldCenter();
 					dx = p2.x - p1.x;
 					dy = p2.y - p1.y;
 					r2 = dx * dx + dy * dy;
 					if (r2 < B2Math.MIN_VALUE)
 					{
-						i = i.nextBody;
+						j = j.nextBody;
 						continue;
 					}
 					f = new B2Vec2(dx, dy);
@@ -117,6 +115,7 @@ class B2GravityController extends B2Controller
 					if (body1.isAwake()) body1.applyForce(f, p1);
 					f.multiply(-1);
 					if (body2.isAwake()) body2.applyForce(f, p2);
+					j = j.nextBody;
 				}
 				i = i.nextBody;
 			}
