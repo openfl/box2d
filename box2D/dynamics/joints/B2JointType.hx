@@ -1,6 +1,6 @@
 package box2D.dynamics.joints;
 
-@:enum abstract B2JointType(Int) from Int to Int
+#if (haxe_ver >= 4.0) enum #else @:enum #end abstract B2JointType(Int) from Int to Int
 {
 	var UNKNOWN_JOINT = 0;
 	var REVOLUTE_JOINT = 1;

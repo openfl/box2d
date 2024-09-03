@@ -1,6 +1,6 @@
 package box2D.dynamics;
 
-@:enum abstract B2BodyType(Int) from Int to Int
+#if (haxe_ver >= 4.0) enum #else @:enum #end abstract B2BodyType(Int) from Int to Int
 {
 	var STATIC_BODY = 0;
 	var KINEMATIC_BODY = 1;

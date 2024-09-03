@@ -1,6 +1,6 @@
 package box2D.dynamics.joints;
 
-@:enum abstract B2LimitState(Int) from Int to Int
+#if (haxe_ver >= 4.0) enum #else @:enum #end abstract B2LimitState(Int) from Int to Int
 {
 	var INACTIVE_LIMIT = 0;
 	var AT_LOWER_LIMIT = 1;
