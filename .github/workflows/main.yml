@@ -60,6 +60,8 @@ jobs:
         haxe-version: [3.4.7, 4.0.5, 4.1.5, 4.2.5, 4.3.2]
     steps:
 
+      - uses: actions/checkout@v4
+
       - uses: krdlab/setup-haxe@v1
         with:
           haxe-version: ${{ matrix.haxe-version }}
@@ -73,15 +75,7 @@ jobs:
           haxelib install lime --quiet
           haxelib install openfl --quiet
           haxelib install actuate --quiet
-
-      - uses: actions/download-artifact@v4
-        with:
-          name: box2d-haxelib
-          path: box2d-haxelib
-
-      - name: Prepare box2d
-        run: |
-          haxelib dev box2d box2d-haxelib
+          haxelib dev box2d ${{ github.workspace }}
 
       - name: Build samples
         run: |
