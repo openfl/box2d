@@ -102,12 +102,6 @@ class B2Settings
 	static public var b2_maxTOIJointsPerIsland:Int = 32;
 
 	/**
-	 * A velocity threshold for elastic collisions. Any collision with a relative linear
-	 * velocity below this threshold will be treated as inelastic.
-	 */
-	static public var b2_velocityThreshold:Float = 1.0; // 1 m/s
-
-	/**
 	 * The maximum linear position correction used when solving constraints. This helps to
 	 * prevent overshoot.
 	 */
@@ -156,6 +150,14 @@ class B2Settings
 	public static function b2MixRestitution(restitution1:Float, restitution2:Float):Float
 	{
 		return restitution1 > restitution2 ? restitution1 : restitution2;
+	}
+
+	/**
+	 * Restitution mixing law. This picks the lowest value.
+	 */
+	public static function b2MixRestitutionThreshold(threshold1:Float, threshold2:Float):Float
+	{
+		return threshold1 < threshold2 ? threshold1 : threshold2;
 	}
 
 	// Sleep
