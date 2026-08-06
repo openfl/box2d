@@ -36,6 +36,7 @@ class B2FixtureDef
 		userData = null;
 		friction = 0.2;
 		restitution = 0.0;
+		restitutionThreshold = 1.0;
 		density = 0.0;
 		filter.categoryBits = 0x0001;
 		filter.maskBits = 0xFFFF;
@@ -63,6 +64,12 @@ class B2FixtureDef
 	 * The restitution (elasticity) usually in the range [0,1].
 	 */
 	public var restitution:Float;
+
+	/**
+	 * The velocity threshold for elastic collisions. Any collision with a relative linear velocity below this
+	 * will be treated as inelastic.
+	 */
+	public var restitutionThreshold:Float;
 
 	/**
 	 * The density, usually in kg/m^2.

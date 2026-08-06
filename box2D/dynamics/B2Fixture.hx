@@ -242,6 +242,22 @@ class B2Fixture
 	}
 
 	/**
+	 * Get the coefficient of restitution.
+	 */
+	public function getRestitutionThreshold():Float
+	{
+		return m_restitutionThreshold;
+	}
+
+	/**
+	 * Set the restitution threshold.
+	 */
+	public function setRestitutionThreshold(threshold:Float):Void
+	{
+		m_restitutionThreshold = threshold;
+	}
+
+	/**
 	 * Get the fixture's AABB. This AABB may be enlarge and/or stale.
 	 * If you need a more accurate AABB, compute it using the shape and
 	 * the body transform.
@@ -268,6 +284,7 @@ class B2Fixture
 
 		m_friction = 0.0;
 		m_restitution = 0.0;
+		m_restitutionThreshold = 0.0;
 	}
 
 	/**
@@ -279,6 +296,7 @@ class B2Fixture
 		m_userData = def.userData;
 		m_friction = def.friction;
 		m_restitution = def.restitution;
+		m_restitutionThreshold = def.restitutionThreshold;
 
 		m_body = body;
 		m_next = null;
@@ -357,6 +375,7 @@ class B2Fixture
 
 	public var m_friction:Float;
 	public var m_restitution:Float;
+	public var m_restitutionThreshold:Float;
 
 	public var m_proxy:Dynamic;
 	public var m_filter:B2FilterData;
